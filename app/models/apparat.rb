@@ -1,0 +1,2 @@
+class Apparat < ApplicationRecord
+end
