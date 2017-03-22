@@ -15,7 +15,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'devise'
-gem 'cancancan'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -25,6 +24,8 @@ gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'ffaker'
+  gem 'database_cleaner'
 end
 
 group :development do

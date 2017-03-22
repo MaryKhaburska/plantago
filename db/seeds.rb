@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# New database
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
+
+5.times do 
+  User.create(name: FFaker::NameUA.name,
+              email: FFaker::Internet.email,
+              password: "password",
+              current_sign_in_ip: FFaker::Internet.ip_v4_address)
+end
+
+10.times do
+  Apparat.create(name: FFaker::BaconIpsum.word,
+                 product_type: FFaker::BaconIpsum.word,
+                 serial_number: FFaker::SSNSE.ssn,
+                 contract: FFaker::BaconIpsum.word,
+                 contacts: FFaker::BaconIpsum.word,
+                 ip_address: FFaker::Internet.ip_v4_address,
+                 description: FFaker::LoremUA.phrase)
+end
