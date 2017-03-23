@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ApparatsController < ApplicationController
   def index
     @apparats = Apparat.all
   end

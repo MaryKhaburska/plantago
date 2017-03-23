@@ -1,0 +1,34 @@
+<div class="starter-template">
+  <h1>apparat#index</h1>                                                                                                                                                                                                                                             </div><!-- /.container -->
+</div>
+<h2>objects</h2>
+<div class="table-responsive">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Contract</th>
+        <th>Serial #</th>
+        <th>Type</th>
+        <th>Contact</th>
+        <th>IP Address</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @apparats.each do |apparat| %>
+         <tr>
+          <td><%= apparat.id %></td>
+          <td><%= apparat.name %></td>
+          <td><%= apparat.contract %></td>
+          <td><%= apparat.serial_number %></td>
+          <td><%= apparat.product_type %></td>
+          <td><%= apparat.contacts %></td>
+          <td><%= apparat.ip_address %></td>
+          <td><%= apparat.description %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  </table>
+</div> 
