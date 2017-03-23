@@ -3,4 +3,9 @@ class HomeController < ApplicationController
     @users = User.all
     @apparats = Apparat.all
   end
+
+  def users
+    @users = User.all
+  end
+
 end
