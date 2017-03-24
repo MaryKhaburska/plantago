@@ -1,9 +1,7 @@
-<div class="starter-template">
-  <h1>List of all users in this app</h1>
-  <%- if current_user %> 
-    <h2>You are <%= current_user.name %> </h2>
-  <% end -%>
-  </div>
+<h1>List of all users in this app</h1>
+<%- if current_user %> 
+  <p>You logged as <strong><%= current_user.name %></strong> </p>
+<% end -%>
 <div class="table-responsive">
   <table class="table table-stripped">
     <thead>
@@ -21,9 +19,10 @@
           <td><%= user.email %></td>
           <td><%= user.current_sign_in_ip %></td>
           <td>superman</td>
+          <td><%= link_to "Show", "#", class: "btn btn-primary btn-xs" %></td>
+          <td><%= link_to "Edit", "#", class: "btn btn-warning btn-xs" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-

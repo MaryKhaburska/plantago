@@ -1,7 +1,4 @@
-<div class="starter-template">
-  <h1>apparat#index</h1>                                                                                                                                                                                                                                             </div><!-- /.container -->
-</div>
-<h2>objects</h2>
+<h1>apparat#index</h1>                                                                                                                                                                                                                                             </div><!-- /.container -->
 <div class="table-responsive">
   <table class="table table-stripped">
     <thead>
@@ -18,7 +15,7 @@
     </thead>
     <tbody>
       <% @apparats.each do |apparat| %>
-         <tr>
+        <tr>
           <td><%= apparat.id %></td>
           <td><%= apparat.name %></td>
           <td><%= apparat.contract %></td>
@@ -27,7 +24,9 @@
           <td><%= apparat.contacts %></td>
           <td><%= apparat.ip_address %></td>
           <td><%= apparat.description %></td>
-        </tr>  
+          <td><%= link_to "Show", "#", class: "btn btn-primary btn-xs" %></td>
+          <td><%= link_to "Edit", "#", class: "btn btn-warning btn-xs" %></td>
+       </tr>  
       <% end %>
     </tbody>
   </table>
