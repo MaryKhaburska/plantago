@@ -10,6 +10,10 @@
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
+User.create(name: "admin", email: "admin@example.com", password: "password", role: :admin)
+User.create(name: "expert", email: "expert@example.com", password: "password", role: :expert)
+User.create(name: "newbie", email: "newbie@example.com", password: "password")
+
 5.times do 
   User.create(name: FFaker::NameUA.name,
               email: FFaker::Internet.email,

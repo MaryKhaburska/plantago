@@ -6,8 +6,4 @@ class HomeController < ApplicationController
   def demo
   end
 
-  def users
-    @users = User.all
-  end
-
 end
