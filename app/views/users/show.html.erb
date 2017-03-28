@@ -1,13 +1,14 @@
-<h1>Personal user information</h1>
-<br>
-<p><strong>Name:</strong> <%= @user.name %></p>
-<p><strong>Email:</strong> <%= @user.email %></p>
-<p><strong>Role:</strong>
-  <%= form_for(@user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit "Change Role", class: "btn btn-primary btn-xs" %>
-  <% end %>
-</p>
-<p><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></p>
-
-<%= link_to "Delete User", user_path(@user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-xs" %>
+<div class="text-left">
+  <h1>Personal user information</h1>
+  <br>
+  <p><strong>Name:</strong> <%= @user.name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Role:</strong>
+    <%= form_for(@user) do |f| %>
+      <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+      <%= f.submit "Change Role", class: "btn btn-primary btn-xs" %>
+    <% end %>
+  </p>
+  <p><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></p>
+  <%= link_to "Delete User", user_path(@user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-xs" %>
+</div>
