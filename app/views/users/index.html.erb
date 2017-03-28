@@ -15,12 +15,10 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
           <td><%= user.current_sign_in_ip %></td>
           <td><%= user.role %></td>
-          <td><%= link_to "Show", "#", class: "btn btn-primary btn-xs" %></td>
-          <td><%= link_to "Edit", "#", class: "btn btn-warning btn-xs" %></td>
         </tr>
       <% end %>
     </tbody>
