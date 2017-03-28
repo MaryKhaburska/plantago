@@ -1,4 +1,5 @@
 <h1>apparat#index</h1>                                                                                                                                                                                                                                             </div><!-- /.container -->
+<p><%= link_to "New Apparat", new_apparat_path, class: "btn btn-info" %></p>
 <div class="table-responsive">
   <table class="table table-stripped">
     <thead>
@@ -17,15 +18,13 @@
       <% @apparats.each do |apparat| %>
         <tr>
           <td><%= apparat.id %></td>
-          <td><%= apparat.name %></td>
+          <td><%= link_to apparat.name, apparat %></td>
           <td><%= apparat.contract %></td>
           <td><%= apparat.serial_number %></td>
           <td><%= apparat.product_type %></td>
           <td><%= apparat.contacts %></td>
           <td><%= apparat.ip_address %></td>
           <td><%= apparat.description %></td>
-          <td><%= link_to "Show", "#", class: "btn btn-primary btn-xs" %></td>
-          <td><%= link_to "Edit", "#", class: "btn btn-warning btn-xs" %></td>
        </tr>  
       <% end %>
     </tbody>

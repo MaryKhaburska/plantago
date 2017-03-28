@@ -1,0 +1,41 @@
+<h1>apparats#new</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="authform">
+      <%= form_for @apparat do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contract %>
+          <%= f.text_field :contract, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :serial_number %>
+          <%= f.text_field :serial_number, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :product_type %>
+          <%= f.text_field :product_type, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contacts %>
+          <%= f.text_field :contacts, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :ip_address %>
+          <%= f.text_field :ip_address, placeholder: "should be filled automatically",  class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Create Apparat", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,9 @@ class ApparatsController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def create
     @apparat = Apparat.new(apparat_params)
 
@@ -36,7 +39,7 @@ class ApparatsController < ApplicationController
   def destroy
     @apparat.destroy
     redirect_to apparats_path
-    ulash[:notice] = "Apparat was successfully deleted."
+    flash[:notice] = "Apparat was successfully deleted."
   end
 
   private
@@ -46,6 +49,8 @@ class ApparatsController < ApplicationController
     end
 
     def apparat_params
-      params.requiure(:apparat).permit(:name)
+      params.require(:apparat).permit(:name, :contract, :serial_number,
+                                       :product_type, :description, :contacts,
+                                       :ip_address)
     end
 end
