@@ -1,2 +1,15 @@
 <h1>apparats#show</h1>
-<p><%= @apparat.name %></p>
+
+<div class="text-left">
+  <p><strong>ID: </strong><%= @apparat.id %></p>
+  <p><strong>Name: </strong><%= @apparat.name %></p>
+  <p><strong>Company: </strong><%= @apparat.company %></p>
+  <p><strong>Serial Number: </strong><%= @apparat.serial_number %></p>
+  <p><strong>type: </strong><%= @apparat.product_type %></p>
+  <p><strong>Contact human: </strong><%= @apparat.contact %></p>
+  <p><strong>IP Address: </strong><%= @apparat.ip_address %></p>
+  <p><strong>Description: </strong><%= @apparat.description %></p>
+  <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
+  <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+</div>
+

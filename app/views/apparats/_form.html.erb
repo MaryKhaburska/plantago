@@ -1,0 +1,37 @@
+<div class="authform">
+  <%= form_for @apparat do |f| %>
+    <%= render "error_messages", object: @apparat %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :company %>
+      <%= f.text_field :company, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :serial_number %>
+      <%= f.text_field :serial_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :product_type %>
+      <%= f.text_field :product_type, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :contact %>
+      <%= f.text_field :contact, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :ip_address %>
+      <%= f.text_field :ip_address, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
+
