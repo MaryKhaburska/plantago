@@ -25,8 +25,8 @@ end
   Apparat.create(name: FFaker::BaconIpsum.word,
                  product_type: FFaker::BaconIpsum.word,
                  serial_number: FFaker::SSNSE.ssn,
-                 contract: FFaker::BaconIpsum.word,
-                 contacts: FFaker::BaconIpsum.word,
+                 company: FFaker::BaconIpsum.word,
+                 contact: FFaker::BaconIpsum.word,
                  ip_address: FFaker::Internet.ip_v4_address,
                  description: FFaker::LoremUA.phrase)
 end
