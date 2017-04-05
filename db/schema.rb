@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329092247) do
+ActiveRecord::Schema.define(version: 20170405113050) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
-    t.string   "company"
     t.string   "serial_number"
     t.string   "product_type"
     t.text     "description"
@@ -22,6 +21,9 @@ ActiveRecord::Schema.define(version: 20170329092247) do
     t.datetime "updated_at",    null: false
     t.string   "contact"
     t.string   "ip_address"
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_apparats_on_company_id"
+    t.index ["ip_address"], name: "index_apparats_on_ip_address"
   end
 
   create_table "users", force: :cascade do |t|
