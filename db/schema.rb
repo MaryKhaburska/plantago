@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406070023) do
+ActiveRecord::Schema.define(version: 20170406083257) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 20170406070023) do
   end
 
   create_table "apparats_permits", force: :cascade do |t|
-    t.integer  "role"
+    t.integer  "role",       default: 0
     t.integer  "user_id"
     t.integer  "apparat_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["apparat_id"], name: "index_apparats_permits_on_apparat_id"
     t.index ["user_id", "apparat_id"], name: "index_apparats_permits_on_user_id_and_apparat_id"
     t.index ["user_id"], name: "index_apparats_permits_on_user_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170406070023) do
   end
 
   create_table "companies_permits", force: :cascade do |t|
-    t.integer "role"
+    t.integer "role",       default: 0
     t.integer "user_id"
     t.integer "company_id"
     t.index ["company_id"], name: "index_companies_permits_on_company_id"
