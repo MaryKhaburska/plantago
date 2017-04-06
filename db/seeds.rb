@@ -10,23 +10,30 @@
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
-User.create(name: "admin", email: "admin@example.com", password: "password", role: :admin)
-User.create(name: "expert", email: "expert@example.com", password: "password", role: :expert)
+User.create(name: "admin", email: "admin@example.com", password: "password", admin: true)
+User.create(name: "expert", email: "expert@example.com", password: "password")
 User.create(name: "newbie", email: "newbie@example.com", password: "password")
 
-5.times do 
-  User.create(name: FFaker::NameUA.name,
-              email: FFaker::Internet.email,
-              password: "password",
-              current_sign_in_ip: FFaker::Internet.ip_v4_address)
-end
+Company.create(name: "Samsung")
+Company.create(name: "LG")
+Company.create(name: "Goldstar")
+Company.create(name: "Saturn")
 
-10.times do
-  Apparat.create(name: FFaker::BaconIpsum.word,
-                 product_type: FFaker::BaconIpsum.word,
-                 serial_number: FFaker::SSNSE.ssn,
-                 company: FFaker::BaconIpsum.word,
-                 contact: FFaker::BaconIpsum.word,
-                 ip_address: FFaker::Internet.ip_v4_address,
-                 description: FFaker::LoremUA.phrase)
-end
+Apparat.create(name: "main server", ip_address: "192.168.0.2", company_id: 1, description: "belongs to Samsung")
+Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 1, description: "belongs to Samsung")
+
+Apparat.create(name: "main server", ip_address: "192.168.0.2",  company_id: 2, description: "belongs to LG")
+Apparat.create(name: "ussual comp", ip_address: "192.168.0.111",  company_id: 2, description: "belongs to LG")
+
+Apparat.create(name: "main server", ip_address: "192.168.0.1",  company_id: 3, description: "belongs to Goldstar")
+Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 3, description: "belongs to Goldstar")
+
+Apparat.create(name: "main server", ip_address: "192.168.0.1",  company_id: 4, description: "belongs to Saturn")
+Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 4, description: "belongs to Saturn")
+
+expert = User.find_by(name: "expert")
+newbie = User.find_by(name: "newbie")
+samsung = Company.find_by(name: "Samsung")
+
+expert.apparats_permits.create(role: :expert, apparat_id: samsung.apparats.first.id)
+newbie.companies_permits.create(company_id: samsung.id)
