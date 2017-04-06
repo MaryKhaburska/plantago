@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406063417) do
+ActiveRecord::Schema.define(version: 20170406064201) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20170406063417) do
     t.integer  "company_id"
     t.index ["company_id"], name: "index_apparats_on_company_id"
     t.index ["ip_address"], name: "index_apparats_on_ip_address"
+  end
+
+  create_table "apparats_permits", force: :cascade do |t|
+    t.string   "role"
+    t.integer  "user_id"
+    t.integer  "apparat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apparat_id"], name: "index_apparats_permits_on_apparat_id"
+    t.index ["user_id", "apparat_id"], name: "index_apparats_permits_on_user_id_and_apparat_id"
+    t.index ["user_id"], name: "index_apparats_permits_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
