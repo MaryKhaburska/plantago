@@ -3,9 +3,9 @@
 <div class="text-left">
   <p><strong>ID: </strong><%= @apparat.id %></p>
   <p><strong>Name: </strong><%= @apparat.name %></p>
-  <p><strong>Company: </strong><%= @apparat.company %></p>
+  <p><strong>Company: </strong><%= link_to @apparat.company.name, '#' %></p>
   <p><strong>Serial Number: </strong><%= @apparat.serial_number %></p>
-  <p><strong>type: </strong><%= @apparat.product_type %></p>
+  <p><strong>Type: </strong><%= @apparat.product_type %></p>
   <p><strong>Contact human: </strong><%= @apparat.contact %></p>
   <p><strong>IP Address: </strong><%= @apparat.ip_address %></p>
   <p><strong>Description: </strong><%= @apparat.description %></p>

@@ -19,7 +19,7 @@
         <tr>
           <td><%= apparat.id %></td>
           <td><%= link_to apparat.name, apparat %></td>
-          <td><%= apparat.company %></td>
+          <td><%= link_to apparat.company.name, '#' %></td>
           <td><%= apparat.serial_number %></td>
           <td><%= apparat.product_type %></td>
           <td><%= apparat.contact %></td>

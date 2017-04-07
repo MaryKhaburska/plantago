@@ -49,7 +49,7 @@ class ApparatsController < ApplicationController
     end
 
     def apparat_params
-      params.require(:apparat).permit(:name, :company, :serial_number,
+      params.require(:apparat).permit(:name, :company_id, :serial_number,
                                       :product_type, :description, :contact,
                                       :ip_address)
     end
