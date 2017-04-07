@@ -1,0 +1,32 @@
+<div class="text-left">
+  <table class="table table-stripped table-hover table-condensed">
+    <tbody>
+      <tr>
+        <td class="col-md-2"><strong>Name: </strong></td>
+        <td><%= @company.name %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Phone: </strong></td>
+        <td><%= @company.phone %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Description: </strong></td>
+        <td><%= simple_format(@company.description) %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Apparats: </strong></td>
+        <td>
+          <% @company.apparats.each do |apparat| %>
+            <%= link_to apparat.name, apparat %> 
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <%= link_to "All Companies", companies_path, class: "btn btn-default" %>
+    <%= link_to "Edit", edit_company_path(@company), class: "btn btn-warning" %>
+    <%= link_to "Delete", @company, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </p>
+</div>
+
