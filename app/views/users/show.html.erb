@@ -3,13 +3,23 @@
   <br>
   <p><strong>Name:</strong> <%= @user.name %></p>
   <p><strong>Email:</strong> <%= @user.email %></p>
-  <p><strong>Role:</strong>
-    <%= form_for(@user) do |f| %>
-      <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-      <%= f.submit "Change Role", class: "btn btn-primary btn-xs" %>
-    <% end %>
-  </p>
-  <p>Тут має бути список фірм, які обслуговує інженер. Та список апаратів. Їх можна додавати, забирати, та змінювати права доступу на редагування, перегляд. НЕ тільки по таблицях в БД, а ще й по полях.</p>
+  <% if @user.admin %>
+     <p><strong>Admin:</strong> <%= @user.admin %></p>
+  <% end %>
+  <p>Тут має бути список фірм, які обслуговує інженер. Та список апаратів. Їх можна додавати, забирати, та змінювати права доступу на редагування, перегляд.</p>
+
+  <% @apparats.each do |apparat| %>
+    <p>
+      <strong><%= link_to apparat.apparat.name, apparat.apparat %>:</strong>
+    <%= apparat.role %></p>
+  <% end %>
+
+  <% @companies.each do |company| %>
+    <p>
+      <strong><%= link_to company.company.name, company.company %>:</strong>
+    <%= company.role %></p>
+  <% end %>
+
   <p><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></p>
   <%= link_to "Delete User", user_path(@user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-xs" %>
 </div>

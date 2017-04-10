@@ -21,6 +21,14 @@
           <% end %>
         </td>
       </tr>
+      <tr>
+        <td class="col-md-2"><strong>Users: </strong></td>
+        <td>
+          <% @company.users.each do |user| %>
+            <%= link_to user.name, user %> 
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
   <p>

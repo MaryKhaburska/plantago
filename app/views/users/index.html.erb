@@ -9,6 +9,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Current IP</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,11 @@
           <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
           <td><%= user.current_sign_in_ip %></td>
+          <td>
+            <% if user.admin %>
+              <strong>Administrator</strong>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

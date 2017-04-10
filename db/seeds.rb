@@ -31,6 +31,7 @@ Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 3, 
 Apparat.create(name: "main server", ip_address: "192.168.0.1",  company_id: 4, description: "belongs to Saturn")
 Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 4, description: "belongs to Saturn")
 
+# Add different permissions for use-apparat and user-company
 expert = User.find_by(name: "expert")
 newbie = User.find_by(name: "newbie")
 samsung = Company.find_by(name: "Samsung")

@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @apparats = @user.apparats_permits
+    @companies = @user.companies_permits
   end
 
   def update
