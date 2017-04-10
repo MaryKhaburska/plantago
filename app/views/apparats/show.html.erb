@@ -1,15 +1,43 @@
-<h1>apparats#show</h1>
-
 <div class="text-left">
-  <p><strong>ID: </strong><%= @apparat.id %></p>
-  <p><strong>Name: </strong><%= @apparat.name %></p>
-  <p><strong>Company: </strong><%= link_to @apparat.company.name, '#' %></p>
-  <p><strong>Serial Number: </strong><%= @apparat.serial_number %></p>
-  <p><strong>Type: </strong><%= @apparat.product_type %></p>
-  <p><strong>Contact human: </strong><%= @apparat.contact %></p>
-  <p><strong>IP Address: </strong><%= @apparat.ip_address %></p>
-  <p><strong>Description: </strong><%= @apparat.description %></p>
-  <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
-  <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  <table class="table table-stripped table-hover table-condensed">
+    <tbody>
+      <tr>
+        <td class="col-md-2"><strong>ID: </strong></td>
+        <td><%= @apparat.id %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Name: </strong></td>
+        <td><%= @apparat.name %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Company: </strong></td>
+        <td><%= link_to @apparat.company.name, @apparat.company %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Serial nubmer: </strong></td>
+        <td><%= @apparat.serial_number %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Type: </strong></td>
+        <td><%= @apparat.product_type.humanize %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Contact person: </strong></td>
+        <td><%= @apparat.contact %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>IP address: </strong></td>
+        <td><%= @apparat.ip_address %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Description: </strong></td>
+        <td><%= @apparat.description %></td>
+      </tr>
+    </tbody>
+  </table> 
+  <p>
+    <%= link_to "All Apparats", apparats_path, class: "btn btn-default" %>
+    <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
+    <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </p>
 </div>
-
