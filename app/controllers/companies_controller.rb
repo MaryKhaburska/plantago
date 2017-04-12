@@ -1,8 +1,12 @@
 class CompaniesController < ApplicationController
+  
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
   def index
-    @companies = Company.all
+    # @companies = Company.all
+    @companies = policy_scope Company
   end
 
   def new
