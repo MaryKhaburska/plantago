@@ -51,4 +51,15 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+
+    def current_user_role
+      if record.instance_of? Company
+        user.companies_permits.find_by(company_id: record.id).role
+      elsif record.instance_of? Apparat
+        user.apparats_permits.find_by(apparat_id: record.id).role
+      end
+    end
+    
 end

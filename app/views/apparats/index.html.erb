@@ -5,6 +5,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Your role:</th>
         <th>Company</th>
         <th>Serial #</th>
         <th>Type</th>
@@ -19,6 +20,7 @@
         <tr>
           <td><%= apparat.id %></td>
           <td><%= apparat.name %></td>
+          <td><%= current_user.apparats_permits.first.role %></td>
           <td><%= link_to apparat.company.name, apparat.company %></td>
           <td><%= apparat.serial_number %></td>
           <td><%= apparat.product_type %></td>
