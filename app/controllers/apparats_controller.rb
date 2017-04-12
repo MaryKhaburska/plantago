@@ -1,9 +1,12 @@
 class ApparatsController < ApplicationController
   
   before_action :set_apparat, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
+#  after_action :verify_policy_scoped, only: :index
   
   def index
-    @apparats = Apparat.all
+    #@apparats = Apparat.all
+    @apparats = policy_scope Apparat
   end
 
   def new
@@ -14,6 +17,7 @@ class ApparatsController < ApplicationController
   end
 
   def show
+    authorize @apparat
   end
 
   def create

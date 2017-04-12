@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  pundit:
+    default: "You cannot perform this action"
+    apparat_policy:
+      destroy?: "You cannot destroy this post!"

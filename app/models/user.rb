@@ -11,4 +11,13 @@ class User < ApplicationRecord
 
   has_many :apparats_permits
   has_many :apparats, through: :apparats_permits
+
+  def current_role(record)
+    if record.instance_of? Company
+      self.companies_permits.find_by(company_id: record.id).role
+    elsif record.instance_of? Apparat
+      self.apparats_permits.find_by(apparat_id: record.id).role
+    end
+  end
+
 end
