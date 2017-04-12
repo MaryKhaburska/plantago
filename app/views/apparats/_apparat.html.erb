@@ -1,0 +1,22 @@
+<tr>
+  <td><%= apparat.id %></td>
+  <td><%= apparat.name %></td>
+  <td><%= link_to apparat.company.name, apparat.company %></td>
+  <td><%= apparat.serial_number %></td>
+  <td><%= apparat.product_type %></td>
+  <td><%= apparat.contact %></td>
+  <td><%= apparat.ip_address %></td>
+  <td><%= apparat.description %></td>
+  <td>
+    <% if policy(apparat).show? %>
+      <%= link_to "Show", apparat_path(apparat), class: "btn btn-info btn-xs" %>
+    <% end %>
+    <% if policy(apparat).edit? %>
+      <%= link_to "Edit", edit_apparat_path(apparat), class: "btn btn-success btn-xs" %>
+    <% end %> 
+    <% if policy(apparat).destroy? %>
+      <%= link_to "Delete", apparat, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+    <% end %>
+  </td>
+</tr>  
+

@@ -45,7 +45,11 @@
   </table> 
   <p>
     <%= link_to "All Apparats", apparats_path, class: "btn btn-default" %>
-    <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
-    <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% if policy(@apparat).edit? %>
+      <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
+    <% end %>
+    <% if policy(@apparat).destroy? %> 
+      <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
   </p>
 </div>

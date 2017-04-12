@@ -1,4 +1,6 @@
-<p class="text-left"><%= link_to "New Apparat", new_apparat_path, class: "btn btn-default btn-sm" %></p>
+<% if current_user.admin? %>
+  <p class="text-left"><%= link_to "New Apparat", new_apparat_path, class: "btn btn-default btn-sm" %></p>
+<% end %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover table-condensed">
     <thead>
@@ -15,23 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @apparats.each do |apparat| %>
-        <tr>
-          <td><%= apparat.id %></td>
-          <td><%= apparat.name %></td>
-          <td><%= link_to apparat.company.name, apparat.company %></td>
-          <td><%= apparat.serial_number %></td>
-          <td><%= apparat.product_type %></td>
-          <td><%= apparat.contact %></td>
-          <td><%= apparat.ip_address %></td>
-          <td><%= apparat.description %></td>
-          <td>
-            <%= link_to "Show", apparat_path(apparat), class: "btn btn-info btn-xs" %>
-            <%= link_to "Edit", edit_apparat_path(apparat), class: "btn btn-success btn-xs" %>
-            <%= link_to "Delete", apparat, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
-          </td>
-       </tr>  
-      <% end %>
-    </tbody>
+      <%= render @apparats %>
+     </tbody>
   </table>
 </div> 

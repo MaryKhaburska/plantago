@@ -1,4 +1,6 @@
-<p class="text-left"><%= link_to "New Company", new_company_path, class: "btn btn-default btn-sm" %></p>
+<% if current_user.admin? %>
+  <p class="text-left"><%= link_to "New Company", new_company_path, class: "btn btn-default btn-sm" %></p>
+<% end %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover table-condensed">
     <thead>
