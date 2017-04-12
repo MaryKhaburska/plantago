@@ -10,9 +10,11 @@ class ApparatsController < ApplicationController
 
   def new
     @apparat = Apparat.new
+    authorize @apparat
   end
 
   def edit
+    authorize @apparat
   end
 
   def show
@@ -21,7 +23,7 @@ class ApparatsController < ApplicationController
 
   def create
     @apparat = Apparat.new(apparat_params)
-
+    authorize @apparat
     if @apparat.save
       redirect_to @apparat
       flash[:notice] = "Apparat was successfully created."
@@ -31,6 +33,7 @@ class ApparatsController < ApplicationController
   end
 
   def update
+    authorize @apparat
     if @apparat.update(apparat_params)
       redirect_to @apparat
       flash[:notice] = "Apparat was successfully updated."
@@ -40,6 +43,7 @@ class ApparatsController < ApplicationController
   end
 
   def destroy
+    authorize @apparat
     @apparat.destroy
     redirect_to apparats_path
     flash[:notice] = "Apparat was successfully deleted."

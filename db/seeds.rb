@@ -11,8 +11,8 @@ DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
 User.create(name: "admin", email: "admin@example.com", password: "password", admin: true)
-User.create(name: "expert", email: "expert@example.com", password: "password")
-User.create(name: "newbie", email: "newbie@example.com", password: "password")
+User.create(name: "Ivan", email: "ivan@example.com", password: "password")
+User.create(name: "Stepan", email: "stepan@example.com", password: "password")
 
 Company.create(name: "Samsung")
 Company.create(name: "LG")
@@ -32,9 +32,17 @@ Apparat.create(name: "main server", ip_address: "192.168.0.1",  company_id: 4, d
 Apparat.create(name: "usual comp", ip_address: "192.168.0.111",  company_id: 4, description: "belongs to Saturn")
 
 # Add different permissions for use-apparat and user-company
-expert = User.find_by(name: "expert")
-newbie = User.find_by(name: "newbie")
-samsung = Company.find_by(name: "Samsung")
+Ivan = User.find_by(name: "Ivan")
+Stepan = User.find_by(name: "Stepan")
 
-expert.apparats_permits.create(role: :expert, apparat_id: samsung.apparats.first.id)
-newbie.companies_permits.create(company_id: samsung.id)
+Ivan.apparats_permits.create(apparat_id: 1)
+Ivan.apparats_permits.create(apparat_id: 3)
+Ivan.apparats_permits.create(apparat_id: 5)
+Ivan.companies_permits.create(company_id: 2)
+Ivan.companies_permits.create(company_id: 4)
+
+Stepan.apparats_permits.create(apparat_id: 2)
+Stepan.apparats_permits.create(apparat_id: 4)
+Stepan.apparats_permits.create(apparat_id: 6)
+Stepan.companies_permits.create(company_id: 1)
+Stepan.companies_permits.create(company_id: 3)
