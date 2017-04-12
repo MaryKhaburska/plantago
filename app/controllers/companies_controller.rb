@@ -5,23 +5,25 @@ class CompaniesController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    # @companies = Company.all
     @companies = policy_scope Company
   end
 
   def new
     @company = Company.new
+    authorize @company
   end
 
   def edit
+    authorize @company
   end
 
   def show
+    authorize @company
   end
 
   def create
     @company = Company.new(company_params)
-  
+    authorize @company
     if @company.save
       redirect_to companies_path
       flash[:notice] = "Company was successfully created."
@@ -31,6 +33,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    authorize @company
     if @company.update(company_params)
       redirect_to @company
       flash[:notice] = "Company was successfully updated."
@@ -40,6 +43,7 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    authorize @company
     @company.destroy
     redirect_to companies_path
     flash[:notice] = "Company was successfully deleted."

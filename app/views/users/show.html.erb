@@ -11,13 +11,17 @@
   <% @apparats.each do |apparat| %>
     <p>
       <strong><%= link_to apparat.apparat.name, apparat.apparat %>:</strong>
-    <%= apparat.role %></p>
+      <%= apparat.role %> 
+      <%= apparat.apparat.id %>
+    </p>
   <% end %>
 
   <% @companies.each do |company| %>
     <p>
       <strong><%= link_to company.company.name, company.company %>:</strong>
-    <%= company.role %></p>
+      <%= company.role %> 
+      <%= company.company.id %>
+    </p>
   <% end %>
 
   <p><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></p>

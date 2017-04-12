@@ -1,4 +1,5 @@
 class ApparatPolicy < ApplicationPolicy
+
   def create?
     user.admin?
   end
@@ -16,7 +17,7 @@ class ApparatPolicy < ApplicationPolicy
       if  user.admin?
         scope.all
       else
-        scope.where(id: user.apparats_permits)
+        scope.where(id: user.apparats)
       end
     end    
   end

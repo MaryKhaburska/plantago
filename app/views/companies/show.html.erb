@@ -26,6 +26,7 @@
         <td>
           <% @company.users.each do |user| %>
             <%= link_to user.name, user %> 
+            <%= user.companies_permits.find_by(company: @company).role %>
           <% end %>
         </td>
       </tr>
