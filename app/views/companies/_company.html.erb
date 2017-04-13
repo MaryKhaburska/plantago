@@ -1,0 +1,18 @@
+<tr>
+  <td><%= company.id  %></td>
+  <td><%= company.name  %></td>
+  <td><%= company.phone  %></td>
+  <td><%= company.description %></td>
+  <td>
+    <% if policy(company).show? %>
+      <%= link_to "Show", company_path(company), class: "btn btn-info btn-xs" %>
+    <% end %>
+    <% if policy(company).edit? %>
+      <%= link_to "Edit", edit_company_path(company), class: "btn btn-success btn-xs" %>
+    <% end %>
+    <% if policy(company).destroy? %>
+      <%= link_to "Delete", company, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+    <% end %>
+  </td>
+</tr>
+ 

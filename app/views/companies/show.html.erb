@@ -34,8 +34,12 @@
   </table>
   <p>
     <%= link_to "All Companies", companies_path, class: "btn btn-default" %>
-    <%= link_to "Edit", edit_company_path(@company), class: "btn btn-warning" %>
-    <%= link_to "Delete", @company, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% if policy(@company).edit? %>
+      <%= link_to "Edit", edit_company_path(@company), class: "btn btn-warning" %>
+    <% end %>
+    <% if policy(@company).destroy? %> 
+      <%= link_to "Delete", @company, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
   </p>
 </div>
 
