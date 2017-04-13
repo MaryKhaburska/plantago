@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
+
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+  
   def index
-    @users = User.all
+    @users = policy_scope User
+     authorize User 
   end
 
   def show
-    @user = User.find(params[:id])
+    authorize @user
     @apparats = @user.apparats_permits
     @companies = @user.companies_permits
   end
 
   def update
-    @user = User.find(params[:id])
+    authorize @user
     if @user.update_attributes(secure_params)
       redirect_to users_path, notice: "User updated."
     else
@@ -19,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
+    authorize @user
     user.destroy
     redirect_to users_path, notice: "User deleted."
   end
@@ -28,5 +34,9 @@ class UsersController < ApplicationController
 
   def secure_params
     params.require(:user).permit(:role)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
