@@ -1,0 +1,16 @@
+<div class="col-md-6">
+  <% if @user.companies.any? %>
+    <h2>Maintained Companies</h2>
+    <table class="table">
+      <tbody>
+        <% @permited_companies.each do |company| %>
+          <tr>
+            <td><strong><%= link_to company.company.name, company.company %>:</strong></td>
+            <td><%= company.role %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+

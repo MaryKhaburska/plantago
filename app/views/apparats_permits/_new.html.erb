@@ -1,0 +1,10 @@
+<%= form_for(@apparats_permit) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.label :user_id %>
+  <%= f.number_field  :user_id %>
+  <%= f.label :apparat_id %>
+  <%= f.number_field :apparat_id %>
+  <%= f.label :role %>
+  <%= f.select :role, ApparatsPermit.roles.keys %>
+  <%= f.submit %>
+<% end %>

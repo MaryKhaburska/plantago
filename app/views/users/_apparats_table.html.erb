@@ -1,0 +1,18 @@
+<div class="col-xs-6">
+  <h2>Maintained Apparats</h2>
+  <% if @user.apparats.any? %>
+    <table class="table">
+      <tbody>
+        <% @permited_apparats.each do |apparat| %>
+          <tr>
+            <td><strong><%= link_to apparat.apparat.name, apparat.apparat %></strong></td>
+            <td>ID: <strong><%= apparat.apparat.id %></strong></td>
+            <td><%= apparat.role %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <%= render "apparats_permits/new" %>
+</div>
+ 

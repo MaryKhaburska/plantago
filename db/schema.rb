@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410082852) do
+ActiveRecord::Schema.define(version: 20170414053945) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170410082852) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["apparat_id"], name: "index_apparats_permits_on_apparat_id"
-    t.index ["user_id", "apparat_id"], name: "index_apparats_permits_on_user_id_and_apparat_id"
+    t.index ["user_id", "apparat_id"], name: "index_apparats_permits_on_user_id_and_apparat_id", unique: true
     t.index ["user_id"], name: "index_apparats_permits_on_user_id"
   end
 
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170410082852) do
     t.integer "user_id"
     t.integer "company_id"
     t.index ["company_id"], name: "index_companies_permits_on_company_id"
-    t.index ["user_id", "company_id"], name: "index_companies_permits_on_user_id_and_company_id"
+    t.index ["user_id", "company_id"], name: "index_companies_permits_on_user_id_and_company_id", unique: true
     t.index ["user_id"], name: "index_companies_permits_on_user_id"
   end
 

@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
   validates :name, presence: true  
 
-  has_many :companies_permits
+  has_many :companies_permits, dependent: :destroy
   has_many :companies, through: :companies_permits
 
-  has_many :apparats_permits
+  has_many :apparats_permits, dependent: :destroy
   has_many :apparats, through: :apparats_permits
 
 end

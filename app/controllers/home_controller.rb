@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-  end
-
-  def demo
+    @apparats_permit = ApparatsPermit.new
   end
 
 end

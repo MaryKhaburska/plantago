@@ -11,8 +11,9 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @apparats = @user.apparats_permits
-    @companies = @user.companies_permits
+    @permited_apparats = @user.apparats_permits
+    @permited_companies = @user.companies_permits
+    @apparats_permit = ApparatsPermit.new
   end
 
   def update
