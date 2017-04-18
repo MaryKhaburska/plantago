@@ -8,6 +8,7 @@
             <td><strong><%= link_to apparat.apparat.name, apparat.apparat %></strong></td>
             <td>ID: <strong><%= apparat.apparat.id %></strong></td>
             <td><%= apparat.role %></td>
+            <td><%= link_to "Delete", [apparat.user, apparat], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger"%></td>
           </tr>
         <% end %>
       </tbody>

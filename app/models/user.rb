@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def not_permited_apparats
     Apparat.all - self.apparats
   end
+
+  def not_permited_companies
+    Companies.all - self.companies
+  end
 end
