@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :apparats_permits, dependent: :destroy
   has_many :apparats, through: :apparats_permits
 
+  def not_permited_apparats
+    Apparat.all - self.apparats
+  end
 end

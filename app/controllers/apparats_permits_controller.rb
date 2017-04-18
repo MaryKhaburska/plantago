@@ -2,14 +2,14 @@ class ApparatsPermitsController < ApplicationController
   
   after_action :verify_authorized
 
-  def new
-    @apparats_permit = Apparats_permit.new
-    authorize @apparats_permit
-  end
+#  def new
+#    @apparats_permit = Apparats_permit.new
+#    authorize @apparats_permit
+#  end
  
   def create
     @user = User.find(apparats_permit_params[:user_id])
-    @apparats_permit = @user.apparats_permits.create(apparats_permit_params)
+    @apparats_permit = @user.apparats_permits.build(apparats_permit_params)
     authorize @apparats_permit
     if @apparats_permit.save
       flash[:notice] = "User's role was successfully created."
@@ -26,7 +26,7 @@ class ApparatsPermitsController < ApplicationController
       flash[:notice] = "User's role was successfully updated"
       redirect_to @user
     else
-      render :edit
+      render "home/index"
     end
   end
 

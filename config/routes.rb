@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :apparats
   resources :users
   resources :companies
-  root to: "home#index"
   resources :apparats_permits, only: [:create, :update, :destroy]
   resources :companies_permits, only: [:create, :update, :destroy]
+  root to: "home#index"
 end
