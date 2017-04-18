@@ -2,11 +2,6 @@ class ApparatsPermitsController < ApplicationController
   
   after_action :verify_authorized
 
-#  def new
-#    @apparats_permit = Apparats_permit.new
-#    authorize @apparats_permit
-#  end
- 
   def create
     @user = User.find(params[:user_id])
     @apparats_permit = @user.apparats_permits.build(apparats_permit_params)
@@ -15,18 +10,19 @@ class ApparatsPermitsController < ApplicationController
       flash[:notice] = "User's role was successfully created."
       redirect_to @user
     else
-      render "home/index"
+      render :new 
     end
   end
 
   def update
-    @apparats_permit = Apparats_permit.find(params[:id])
+    @apparats_permit = ApparatsPermit.find(params[:id])
     authorize @apparats_permit
-    if @apparats_permit.update(apparats_permit_params)
+    if @apparats_permit.update_attributes(apparats_permit_params)
       flash[:notice] = "User's role was successfully updated"
-      redirect_to @user
+      redirect_to @apparats_permit.user
     else
-      render "home/index"
+      flash[:danger] = "Role was not changed."
+      redirect_to @user
     end
   end
 

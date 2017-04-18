@@ -1,13 +1,27 @@
 <div class="col-xs-6">
-  <h2>Maintained Apparats</h2>
+  <h2 class="text-center">Maintained Apparats</h2>
   <% if @user.apparats.any? %>
     <table class="table">
+      <thead>
+        <tr>
+          <th><strong>Name</strong></th>
+          <th><strong>ID</strong></th>
+          <th><strong>Current Role</strong></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody>
         <% @permited_apparats.each do |apparat| %>
           <tr>
             <td><strong><%= link_to apparat.apparat.name, apparat.apparat %></strong></td>
-            <td>ID: <strong><%= apparat.apparat.id %></strong></td>
-            <td><%= apparat.role %></td>
+            <td><strong><%= apparat.apparat.id %></strong></td>
+            <td>
+              <%= form_for([apparat.user, apparat]) do |f| %>
+                <%= f.select :role, ApparatsPermit.roles.keys %>
+                <%= f.submit "Change", class: "btn btn-xs btn-warning" %>
+              <% end %>
+            </td>
             <td><%= link_to "Delete", [apparat.user, apparat], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger"%></td>
           </tr>
         <% end %>
