@@ -8,7 +8,7 @@ class ApparatsPermitsController < ApplicationController
 #  end
  
   def create
-    @user = User.find(apparats_permit_params[:user_id])
+    @user = User.find(params[:user_id])
     @apparats_permit = @user.apparats_permits.build(apparats_permit_params)
     authorize @apparats_permit
     if @apparats_permit.save

@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     authorize @user
     @permited_apparats = @user.apparats_permits
     @permited_companies = @user.companies_permits
-    @apparats_permit = ApparatsPermit.new
   end
 
   def update

@@ -1,7 +1,5 @@
-<%= form_for(@apparats_permit) do |f| %>
+<%= form_for([@user, @user.apparats_permits.build]) do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-  <%= f.label :user_id %>
-  <%= f.select(:user_id, [[@user.name, @user.id]]) %>
   <%= f.label :apparat_id %>
   <%= f.select(:apparat_id, @user.not_permited_apparats.map {|apparat| ["#{apparat.id} | #{apparat.name}", apparat.id]}) %>
   <%= f.label :role %>
