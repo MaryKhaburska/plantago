@@ -7,6 +7,7 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = @user.companies_permits.build(companies_permit_params)
     authorize @companies_permit
     if @companies_permit.save
+      @user.apparats << @companies_permit.company.apparats
       flash[:notice] = "User's role was successfully created."
       redirect_to @user
     else
@@ -31,13 +32,15 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = @user.companies_permits.find(params[:id])
     authorize @companies_permit
     @companies_permit.destroy
+    @user.apparats.delete(@companies_permit.company.apparats)
     flash[:notice] = "User's role was successfully deleted"
     redirect_to @user
   end
 
   private
 
-  def companies_permit_params
-    params.require(:companies_permit).permit(:user_id, :company_id, :role)
-  end
+    def companies_permit_params
+      params.require(:companies_permit).permit(:user_id, :company_id, :role)
+    end
+
 end
