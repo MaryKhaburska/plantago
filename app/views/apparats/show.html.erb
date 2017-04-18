@@ -33,14 +33,16 @@
         <td class="col-md-2"><strong>Description: </strong></td>
         <td><%= simple_format(@apparat.description) %></td>
       </tr>
-      <tr>
-        <td class="col-md-2"><strong>Users: </strong></td>
-        <td>
-          <% @apparat.users.each do |user| %>
-            <%= link_to user.name, user %>
-          <% end %>
-        </td>
-      </tr>
+      <% if current_user.admin? %>
+        <tr>
+          <td class="col-md-2"><strong>Users: </strong></td>
+          <td>
+            <% @apparat.users.each do |user| %>
+              <%= link_to user.name, user %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table> 
   <p>

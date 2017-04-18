@@ -1,16 +1,31 @@
-<div class="col-md-6">
-  <% if @user.companies.any? %>
-    <h2>Maintained Companies</h2>
-    <table class="table">
-      <tbody>
-        <% @permited_companies.each do |company| %>
-          <tr>
-            <td><strong><%= link_to company.company.name, company.company %>:</strong></td>
-            <td><%= company.role %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
+<% if @user.companies.any? %>
+  <h2 class="text-center">Maintained Companies</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><strong>Name</strong></th>
+        <th><strong>Current Role</strong></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @permited_companies.each do |permit| %>
+        <tr>
+          <td><strong><%= link_to permit.company.name, permit.company %>:</strong></td>
+          <td>
+            <%= form_for [permit.user, permit] do |f| %>
+              <%= f.select :role, CompaniesPermit.roles.keys %>
+              <%= f.submit "Change", class: "btn btn-xs btn-warning" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Delete", [permit.user, permit], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= render "companies_permits/new" %>
 

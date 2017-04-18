@@ -8,7 +8,7 @@
         <td><strong>Name:</strong> <%= @user.name %></td>
         <td><strong>Email:</strong> <%= @user.email %></td>
         <td><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></td>
-        <% if @user.admin %>
+        <% if @user.admin? %>
            <td><strong>Admin:</strong> <%= @user.admin %></td>
         <% end %>
       </tr>
@@ -19,8 +19,14 @@
     <%= link_to "Delete User", user_path(@user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-xs" %>
   <% end %>
 
-  <div class="row">
-    <%= render "users/apparats_table" %>
-    <%= render "users/companies_table" %>
-  </div>
+  <% if !@user.admin? %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= render "users/apparats_table" %>
+      </div>
+      <div class="col-xs-6">
+        <%= render "users/companies_table" %>
+      </div>
+    </div>
+  <% end %>
 </div>
