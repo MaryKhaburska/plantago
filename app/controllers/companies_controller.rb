@@ -56,6 +56,6 @@ class CompaniesController < ApplicationController
     end
 
     def company_params
-      params.require(:company).permit(:name, :phone, :description)
+      params.require(:company).permit(policy(@company).permitted_attributes)
     end
 end

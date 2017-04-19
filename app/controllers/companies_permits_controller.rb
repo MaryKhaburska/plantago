@@ -7,7 +7,7 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = @user.companies_permits.build(companies_permit_params)
     authorize @companies_permit
     if @companies_permit.save
-      @user.apparats << @companies_permit.company.apparats
+      @user.apparats << @companies_permit.company.apparats - @user.apparats
       flash[:notice] = "User's role was successfully created."
       redirect_to @user
     else

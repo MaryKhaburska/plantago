@@ -56,8 +56,7 @@ class ApparatsController < ApplicationController
     end
 
     def apparat_params
-      params.require(:apparat).permit(:name, :company_id, :serial_number,
-                                      :product_type, :description, :contact,
-                                      :ip_address)
+      params.require(:apparat).permit(policy(@apparat).permitted_attributes)
     end
+  
 end
