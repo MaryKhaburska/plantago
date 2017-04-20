@@ -1,4 +1,5 @@
 <div class="text-left">
+  <p>Твоя роль на поточному пристрої: <strong><%= current_role @apparat %></strong></p>
   <table class="table table-stripped table-hover table-condensed">
     <tbody>
       <tr>
@@ -38,13 +39,14 @@
           <td class="col-md-2"><strong>Users: </strong></td>
           <td>
             <% @apparat.users.each do |user| %>
-              <%= link_to user.name, user %>
+              <%= link_to user.name, user %> 
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table> 
+
   <p>
     <%= link_to "All Items", apparats_path, class: "btn btn-default" %>
     <% if policy(@apparat).edit? %>
@@ -54,4 +56,8 @@
       <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     <% end %>
   </p>
+
+  <div id="add-description-form">
+    <%= render "apparats/update_description_form" %>  
+  </div>
 </div>

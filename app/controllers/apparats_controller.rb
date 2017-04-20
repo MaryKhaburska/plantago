@@ -1,7 +1,7 @@
 class ApparatsController < ApplicationController
   
-  before_action :set_apparat, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: :index
+  before_action :set_apparat, only: [:show, :edit, :update, :destroy, :update_description]
+  after_action :verify_authorized, except: [:index, :update_description]
   after_action :verify_policy_scoped, only: :index
   
   def index
@@ -47,6 +47,14 @@ class ApparatsController < ApplicationController
     @apparat.destroy
     redirect_to apparats_path
     flash[:notice] = "Item was successfully deleted."
+  end
+
+  def update_description
+    @apparat = Apparat.find(params[:id])
+    desc = "#{@apparat.description}\n\r#{params[:description]}"
+    @apparat.update(description: desc)
+    flash[:danger] = "Добавлено нову інформацію в опис."
+    redirect_to @apparat 
   end
 
   private
