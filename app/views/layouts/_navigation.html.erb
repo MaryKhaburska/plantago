@@ -13,19 +13,18 @@
     <ul class="nav navbar-nav">
       <% if current_user %>
         <% if current_user.admin? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "Інженери", users_path %></li>
         <% end %>
-        <li><%= link_to "Items", apparats_path %></li>
-        <li><%= link_to "Companies", companies_path %></li>
+        <li><%= link_to "Пристрої", apparats_path %></li>
+        <li><%= link_to "Компанії", companies_path %></li>
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
         <li><%= link_to current_user.name.humanize, edit_user_registration_path %></li>
-        <li><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li>
+        <li><%= link_to "Вийти", destroy_user_session_path, method: "delete" %></li>
       <% else %>
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li><%= link_to "Register", new_user_registration_path %></li>
+        <li><%= link_to "Зайти", new_user_session_path %></li>
       <% end %>
     </ul>  
     </div><!--/.nav-collapse -->

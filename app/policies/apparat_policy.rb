@@ -5,11 +5,15 @@ class ApparatPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? or current_user_role == "expert" or current_user_role == "writer"
+    user.admin? or current_user_role == "expert"
   end
 
   def destroy?
     user.admin?
+  end
+
+  def update_description?
+    current_user_role = "writer"
   end
 
   def permitted_attributes

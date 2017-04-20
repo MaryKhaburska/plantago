@@ -7,57 +7,55 @@
         <td><%= @apparat.id %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Name: </strong></td>
+        <td class="col-md-2"><strong>Назва: </strong></td>
         <td><%= @apparat.name %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Company: </strong></td>
+        <td class="col-md-2"><strong>Компанія власник: </strong></td>
         <td><%= link_to @apparat.company.name, @apparat.company %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Serial nubmer: </strong></td>
+        <td class="col-md-2"><strong>Серійний номер: </strong></td>
         <td><%= @apparat.serial_number %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Type: </strong></td>
+        <td class="col-md-2"><strong>Тип: </strong></td>
         <td><%= @apparat.product_type.humanize if @apparat.product_type %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Contact person: </strong></td>
-        <td><%= @apparat.contact %></td>
-      </tr>
-      <tr>
-        <td class="col-md-2"><strong>IP address: </strong></td>
+        <td class="col-md-2"><strong>IP адреса: </strong></td>
         <td><%= @apparat.ip_address %></td>
-      </tr>
-      <tr>
-        <td class="col-md-2"><strong>Description: </strong></td>
-        <td><%= simple_format(@apparat.description) %></td>
       </tr>
       <% if current_user.admin? %>
         <tr>
-          <td class="col-md-2"><strong>Users: </strong></td>
+          <td class="col-md-2"><strong>Інженери: </strong></td>
           <td>
             <% @apparat.users.each do |user| %>
-              <%= link_to user.name, user %> 
+              <%= link_to user.name, user %>
+              <%= user.apparats_permits.find_by(apparat: @apparat).role %>
             <% end %>
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td class="col-md-2"><strong>Опис: </strong></td>
+        <td><%= simple_format(@apparat.description) %></td>
+      </tr>
     </tbody>
   </table> 
 
   <p>
-    <%= link_to "All Items", apparats_path, class: "btn btn-default" %>
     <% if policy(@apparat).edit? %>
-      <%= link_to "Edit", edit_apparat_path(@apparat), class: "btn btn-warning" %>
+      <%= link_to "Редагувати", edit_apparat_path(@apparat), class: "btn btn-warning" %>
     <% end %>
     <% if policy(@apparat).destroy? %> 
-      <%= link_to "Delete", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <%= link_to "Видалити", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     <% end %>
   </p>
 
-  <div id="add-description-form">
-    <%= render "apparats/update_description_form" %>  
-  </div>
+  <% if policy(@apparat).update_description? %>
+    <div id="add-description-form">
+      <%= render "apparats/update_description_form" %>  
+    </div>
+  <% end %>
 </div>
