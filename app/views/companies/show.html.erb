@@ -14,7 +14,7 @@
         <td><%= simple_format(@company.description) %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Apparats: </strong></td>
+        <td class="col-md-2"><strong>Items: </strong></td>
         <td>
           <% @company.apparats.each do |apparat| %>
             <%= link_to apparat.name, apparat %> 

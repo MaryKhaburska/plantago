@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :companies_permits, only: [:create, :update, :destroy]
   end
   resources :companies
-  root to: "apparats#index"
+  root to: "home#index"
 end

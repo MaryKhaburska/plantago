@@ -26,7 +26,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.save
       redirect_to @apparat
-      flash[:notice] = "Apparat was successfully created."
+      flash[:notice] = "Item was successfully created."
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.update(apparat_params)
       redirect_to @apparat
-      flash[:notice] = "Apparat was successfully updated."
+      flash[:notice] = "Item was successfully updated."
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     @apparat.destroy
     redirect_to apparats_path
-    flash[:notice] = "Apparat was successfully deleted."
+    flash[:notice] = "Item was successfully deleted."
   end
 
   private
