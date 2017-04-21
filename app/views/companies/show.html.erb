@@ -22,16 +22,15 @@
           <% end %>
         </td>
       </tr>
-      <% if @company.contacts.any? %>
-        <tr>
-          <td class="col-md-2"><strong>Контакти:</strong></td>
-          <td>
-            <% @company.contacts.each do |contact| %>
-              <%= link_to contact.name, company_contact_url(contact) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td class="col-md-2"><strong>Контакти:</strong></td>
+        <td>
+          <% @company.contacts.each do |contact| %>
+            <%= link_to contact.name, company_contact_url(@company, contact) %>
+          <% end %>
+        <span><%= link_to "New", new_company_contact_url(@company), class: "btn btn-xs btn-primary" %></span>
+        </td>
+      </tr>
       <% if current_user.admin? %>
         <tr>
           <td class="col-md-2"><strong>Інженери: </strong></td>

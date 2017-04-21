@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   
   resources :companies do
-    resources :contacts 
+    resources :contacts, except: [:index] 
   end
   
   root to: "home#index"

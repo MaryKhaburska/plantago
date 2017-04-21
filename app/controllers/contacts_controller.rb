@@ -1,32 +1,33 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @contacts = Contacts.all
-  end
-
   def show
   end
 
   def new
-    @contact = Contact.new
+    @company = Company.find(params[:company_id])
+    @contact = @company.contacts.build
   end
 
   def edit
+    @company = Company.find(params[:company_id])
+    @contact = Contact.find(params[:id]) 
   end
 
   def create
-    @contact = Contact.new(user_params)
+    @company = Company.find(params[:company_id])
+    @contact = @company.contacts.create(contact_params)
     if @contact.save
-      redirect_to @contact, notice: "Новий контакт створено."
+      redirect_to @company, notice: "Новий контакт створено."
     else
       render :new
     end
   end
 
   def update
+    @contact = Contact.find(params[:id])
     if @contact.update(contact_params)
-      redirect_to @user, notice: "Контакт змінено успішно."
+      redirect_to company_contact_url(@contact), notice: "Контакт змінено успішно."
     else
       render :edit
     end
@@ -34,7 +35,7 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact.destroy
-    redirect_to contacts_url, notice: "Контакт видалено успішно."
+    redirect_to @contact.company, notice: "Контакт видалено успішно."
   end
 
   private
@@ -44,7 +45,7 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params.require(:user).permit(:name, :email, :phone, :skype) 
+    params.require(:contact).permit(:name, :email, :phone, :skype, :company_id) 
   end
 
 end
