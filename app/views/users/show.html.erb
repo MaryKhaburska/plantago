@@ -1,22 +1,22 @@
 <div class="text-left">
   
-  <h1 style="text-align: center;">Personal user information</h1>
+  <h1 style="text-align: center;">Інформація про інженера</h1>
 
   <table class="table">
     <tbody>
       <tr>
-        <td><strong>Name:</strong> <%= @user.name %></td>
-        <td><strong>Email:</strong> <%= @user.email %></td>
-        <td><strong>Last sign in IP:</strong> <%= @user.current_sign_in_ip %></td>
+        <td><strong>Ім'я:</strong> <%= @user.name %></td>
+        <td><strong>Пошта:</strong> <%= @user.email %></td>
+        <td><strong>Останній IP з якого зайшов в систему:</strong> <%= @user.current_sign_in_ip %></td>
         <% if @user.admin? %>
-           <td><strong>Admin:</strong> <%= @user.admin %></td>
+           <td><strong>Адміністратор:</strong> <%= @user.admin %></td>
         <% end %>
       </tr>
     </tbody> 
   </table>
 
   <% if current_user.admin? and @user != current_user  %>
-    <%= link_to "Delete User", user_path(@user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-xs" %>
+    <%= link_to "Видалити інженера", user_path(@user), data: {confirm: "Впевнений що хочеш видалити інженера?"}, method: :delete, class: "btn btn-danger btn-xs" %>
   <% end %>
 
   <% if !@user.admin? %>

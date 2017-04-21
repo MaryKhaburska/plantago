@@ -1,11 +1,11 @@
 <% if @user.apparats.any? %>
-  <h2 class="text-center">Maintained Items</h2>
+  <h2 class="text-center">Призначені пристрої</h2>
   <table class="table">
     <thead>
       <tr>
-        <th><strong>Name</strong></th>
+        <th><strong>Назва</strong></th>
         <th><strong>ID</strong></th>
-        <th><strong>Current Role</strong></th>
+        <th><strong>Роль</strong></th>
         <th></th>
         <th></th>
       </tr>
@@ -18,10 +18,10 @@
           <td>
             <%= form_for([apparat.user, apparat]) do |f| %>
               <%= f.select :role, ApparatsPermit.roles.keys %>
-              <%= f.submit "Change", class: "btn btn-xs btn-warning" %>
+              <%= f.submit "Змінити", class: "btn btn-xs btn-warning" %>
             <% end %>
           </td>
-          <td><%= link_to "Delete", [apparat.user, apparat], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger"%></td>
+          <td><%= link_to "Видалити", [apparat.user, apparat], method: :delete, data: {confirm: "Впевнений що хочеш видалити роль?"}, class: "btn btn-xs btn-danger"%></td>
         </tr>
       <% end %>
     </tbody>

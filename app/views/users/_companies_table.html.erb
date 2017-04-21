@@ -1,10 +1,10 @@
 <% if @user.companies.any? %>
-  <h2 class="text-center">Maintained Companies</h2>
+  <h2 class="text-center">Призначені компанії</h2>
   <table class="table">
     <thead>
       <tr>
-        <th><strong>Name</strong></th>
-        <th><strong>Current Role</strong></th>
+        <th><strong>Назва</strong></th>
+        <th><strong>Роль</strong></th>
         <th></th>
         <th></th>
       </tr>
@@ -16,11 +16,11 @@
           <td>
             <%= form_for [permit.user, permit] do |f| %>
               <%= f.select :role, CompaniesPermit.roles.keys %>
-              <%= f.submit "Change", class: "btn btn-xs btn-warning" %>
+              <%= f.submit "Змінити", class: "btn btn-xs btn-warning" %>
             <% end %>
           </td>
           <td>
-            <%= link_to "Delete", [permit.user, permit], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" %>
+            <%= link_to "Видалити", [permit.user, permit], method: :delete, data: {confirm: "Впевнений що хочеш видалити роль?"}, class: "btn btn-xs btn-danger" %>
           </td>
         </tr>
       <% end %>
