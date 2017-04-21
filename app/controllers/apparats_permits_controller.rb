@@ -38,6 +38,6 @@ class ApparatsPermitsController < ApplicationController
   private
 
   def apparats_permit_params
-    params.require(:apparats_permit).permit(:user_id, :apparat_id, :role)
+    params.require(:apparats_permit).permit(:user_id, :apparat_id, :role, :locked)
   end
 end

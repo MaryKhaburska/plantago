@@ -18,6 +18,7 @@
           <td>
             <%= form_for([apparat.user, apparat]) do |f| %>
               <%= f.select :role, ApparatsPermit.roles.keys %>
+              <%= f.check_box :locked %>
               <%= f.submit "Змінити", class: "btn btn-xs btn-warning" %>
             <% end %>
           </td>

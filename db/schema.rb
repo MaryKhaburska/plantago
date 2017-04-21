@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421065127) do
+ActiveRecord::Schema.define(version: 20170421122820) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 20170421065127) do
     t.integer  "role",       default: 0
     t.integer  "user_id"
     t.integer  "apparat_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "locked",     default: false
     t.index ["apparat_id"], name: "index_apparats_permits_on_apparat_id"
     t.index ["user_id", "apparat_id"], name: "index_apparats_permits_on_user_id_and_apparat_id", unique: true
     t.index ["user_id"], name: "index_apparats_permits_on_user_id"
