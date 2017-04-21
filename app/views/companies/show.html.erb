@@ -22,6 +22,16 @@
           <% end %>
         </td>
       </tr>
+      <% if @company.contacts.any? %>
+        <tr>
+          <td class="col-md-2"><strong>Контакти:</strong></td>
+          <td>
+            <% @company.contacts.each do |contact| %>
+              <%= link_to contact.name, company_contact_url(contact) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
       <% if current_user.admin? %>
         <tr>
           <td class="col-md-2"><strong>Інженери: </strong></td>

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :apparats_permits, only: [:create, :update, :destroy]
     resources :companies_permits, only: [:create, :update, :destroy]
   end
-  resources :companies
+  
+  resources :companies do
+    resources :contacts 
+  end
+  
   root to: "home#index"
 end
