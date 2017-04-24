@@ -19,7 +19,7 @@
             <%= form_for([apparat.user, apparat]) do |f| %>
               <%= f.select :role, ApparatsPermit.roles.keys %>
               <%= f.check_box :locked %>
-              <%= f.submit "Змінити", class: "btn btn-xs btn-warning" %>
+              <%= f.submit "Змінити", data: {confirm: "Дійсно змінити роль?"}, class: "btn btn-xs btn-warning" %>
             <% end %>
           </td>
           <td><%= link_to "Видалити", [apparat.user, apparat], method: :delete, data: {confirm: "Впевнений що хочеш видалити роль?"}, class: "btn btn-xs btn-danger"%></td>
@@ -30,5 +30,7 @@
 <% elsif%>
   <h2>Нема призначених пристроїв</h2>
 <% end %>
-<%= render "apparats_permits/new" %>
+<% if @user.not_permited_apparats.any? %>
+  <%= render "apparats_permits/new" %>
+<% end %>
 

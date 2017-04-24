@@ -16,7 +16,7 @@
           <td>
             <%= form_for [permit.user, permit] do |f| %>
               <%= f.select :role, CompaniesPermit.roles.keys %>
-              <%= f.submit "Змінити", class: "btn btn-xs btn-warning" %>
+              <%= f.submit "Змінити", data: {confirm: "Дійсно змінити роль?"}, class: "btn btn-xs btn-warning" %>
             <% end %>
           </td>
           <td>
@@ -29,5 +29,8 @@
 <% elsif %>
   <h2>Нема призначених компаній</h2>
 <% end %>
-<%= render "companies_permits/new" %>
+
+<% if @user.not_permited_companies.any? %>
+  <%= render "companies_permits/new" %>
+<% end %>
 
