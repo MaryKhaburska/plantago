@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170424134318) do
   create_table "apparats_contacts", force: :cascade do |t|
     t.integer "apparat_id"
     t.integer "contact_id"
+    t.index ["apparat_id", "contact_id"], name: "index_apparats_contacts_on_apparat_id_and_contact_id", unique: true
     t.index ["apparat_id"], name: "index_apparats_contacts_on_apparat_id"
     t.index ["contact_id"], name: "index_apparats_contacts_on_contact_id"
   end
