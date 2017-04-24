@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421122820) do
+ActiveRecord::Schema.define(version: 20170424134318) do
 
   create_table "apparats", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20170421122820) do
     t.integer  "company_id"
     t.index ["company_id"], name: "index_apparats_on_company_id"
     t.index ["ip_address"], name: "index_apparats_on_ip_address"
+  end
+
+  create_table "apparats_contacts", force: :cascade do |t|
+    t.integer "apparat_id"
+    t.integer "contact_id"
+    t.index ["apparat_id"], name: "index_apparats_contacts_on_apparat_id"
+    t.index ["contact_id"], name: "index_apparats_contacts_on_contact_id"
   end
 
   create_table "apparats_permits", force: :cascade do |t|
