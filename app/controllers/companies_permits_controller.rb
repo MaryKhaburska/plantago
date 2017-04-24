@@ -7,7 +7,6 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = @user.companies_permits.build(companies_permit_params)
     authorize @companies_permit
     if @companies_permit.save
-      #@user.apparats << @companies_permit.company.apparats - @user.apparats
       create_apparat_role
       flash[:notice] = "User's role was successfully created."
       redirect_to @user
@@ -21,7 +20,7 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = CompaniesPermit.find(params[:id])
     authorize @companies_permit
     if @companies_permit.update_attributes(companies_permit_params)
-      update_apparats_role(@user, @companies_permit)
+      update_apparats_role
       flash[:notice] = "User's role was successfully updated"
       redirect_to @companies_permit.user
     else
@@ -44,15 +43,18 @@ class CompaniesPermitsController < ApplicationController
 
     def create_apparat_role
       @companies_permit.company.apparats.map do |apparat|
-        @user.apparats_permits.create(apparat: apparat, role: @companies_permit.role)
+        @user.apparats_permits.
+          create(apparat: apparat, role: @companies_permit.role)
       end
     end
 
-    def update_apparats_role(user, company_permit)
-      company = company_permit.company
-      role = company_permit.role
-      user.apparats.where(company: company).map do |apparat|
-        user.apparats_permits.find_by(apparat: apparat).role = role
+    def update_apparats_role
+      company = @companies_permit.company
+      role = @companies_permit.role
+      @user.apparats.where(company: company).map do |apparat|
+        perm = @user.apparats_permits.find_by(apparat: apparat)
+        perm.role = role if !perm.locked?
+        perm.save
       end
     end
 
