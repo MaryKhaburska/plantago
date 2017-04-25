@@ -21,7 +21,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-        <li><%= link_to current_user.name.humanize, edit_user_registration_path %></li>
+        <li id="current-user-name"><strong><%= current_user.name.humanize %></strong></li>
         <li><%= link_to "Вийти", destroy_user_session_path, method: "delete" %></li>
       <% else %>
         <li><%= link_to "Зайти", new_user_session_path %></li>
@@ -30,5 +30,4 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-
 

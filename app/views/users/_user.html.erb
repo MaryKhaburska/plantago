@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.current_sign_in_ip %></td>
+  <td>
+    <% if user.admin %>
+      <strong>Адміністратор</strong>
+    <% end %>
+  </td>
+</tr>
