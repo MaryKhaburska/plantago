@@ -13,7 +13,7 @@ class ApparatPolicy < ApplicationPolicy
   end
 
   def update_description?
-    current_user_role = "writer"
+    current_user_role == "writer"
   end
 
   def permitted_attributes

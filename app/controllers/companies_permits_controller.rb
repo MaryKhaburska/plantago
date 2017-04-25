@@ -11,7 +11,7 @@ class CompaniesPermitsController < ApplicationController
       flash[:notice] = "User's role was successfully created."
       redirect_to @user
     else
-      redirect_to @user 
+      render :new 
     end
   end
 

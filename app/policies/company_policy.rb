@@ -5,7 +5,7 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? or current_user_role == "expert" or current_user_role == "writer"
+    user.admin?
   end
 
    def destroy?

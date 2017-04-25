@@ -56,9 +56,11 @@ class ApplicationPolicy
 
     def current_user_role
       if record.instance_of? Company
-        user.companies_permits.find_by(company_id: record).role
+        user.admin? or user.companies_permits.find_by(company_id: record).role
       elsif record.instance_of? Apparat
-        user.apparats_permits.find_by(apparat_id: record).role
+        user.admin? or user.apparats_permits.find_by(apparat_id: record).role
+      else
+        false
       end
     end
 
