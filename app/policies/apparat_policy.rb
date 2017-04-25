@@ -13,15 +13,23 @@ class ApparatPolicy < ApplicationPolicy
   end
 
   def update_description?
-    current_user_role == "writer"
+    current_user_role == "writer" or
+    current_user_role == "expert" or 
+    user.admin?
+  end
+
+  def add_contact?
+    current_user_role == "writer" or 
+    current_user_role == "expert" or 
+    user.admin?
   end
 
   def permitted_attributes
     if user.admin? or current_user_role == "expert"
-      [:name, :company_id, :serial_number, :product_type, :description, :contact,
-       :ip_address]
+      [:name, :company_id, :serial_number, :product_type, :description,
+       :ip_address, :contact_id]
     elsif current_user_role == "writer"
-      [:description]
+      [:description, :contact_id]
     else
       false
     end

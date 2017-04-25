@@ -18,6 +18,10 @@
         <td><%= @contact.skype %></td>
       </tr>
       <tr>
+        <td class="col-md-2"><strong>Контакт за замовчанням</strong><td>
+        <td><%= @contact.default %></td>
+      </tr>
+      <tr>
         <td class="col-md-2"><strong>Компанія</strong><td>
         <td><%= link_to @contact.company.name, @contact.company %></td>
       </tr>

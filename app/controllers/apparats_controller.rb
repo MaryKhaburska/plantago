@@ -1,6 +1,6 @@
 class ApparatsController < ApplicationController
   
-  before_action :set_apparat, only: [:show, :edit, :update, :destroy, :update_description]
+  before_action :set_apparat, only: [:show, :edit, :update, :destroy, :update_description, :add_contact]
   after_action :verify_authorized, except: [:index, :update_description]
   after_action :verify_policy_scoped, only: :index
   
@@ -50,11 +50,17 @@ class ApparatsController < ApplicationController
   end
 
   def update_description
-    @apparat = Apparat.find(params[:id])
     desc = "#{@apparat.description}\n\r#{params[:description]}"
     @apparat.update(description: desc)
     flash[:danger] = "Добавлено нову інформацію в опис."
     redirect_to @apparat 
+  end
+
+  def add_contact
+    authorize @apparat
+    @contact = Contact.find(params[:contact_id])
+    @apparat.contacts << @contact
+    redirect_to @apparat
   end
 
   private
@@ -64,7 +70,7 @@ class ApparatsController < ApplicationController
     end
 
     def apparat_params
-      params.require(:apparat).permit(policy(@apparat).permitted_attributes)
+      params.require(:apparat).permit(policy(Apparat).permitted_attributes)
     end
   
 end

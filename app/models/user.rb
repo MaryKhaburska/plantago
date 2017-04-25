@@ -19,4 +19,5 @@ class User < ApplicationRecord
   def not_permited_companies
     Company.all - self.companies
   end
+  
 end

@@ -66,4 +66,7 @@
       <%= render "apparats/update_description_form" %>  
     </div>
   <% end %>
+  <% if policy(@apparat).add_contact? %>
+    <%= render "add_new_contact" %>
+  <% end %>
 </div>

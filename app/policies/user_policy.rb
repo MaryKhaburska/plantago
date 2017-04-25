@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return false if current_user == user
+    # return false if current_user == user
     user.admin?
   end
 
