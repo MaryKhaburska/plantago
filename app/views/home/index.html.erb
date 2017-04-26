@@ -1,3 +1,9 @@
-<h1>home#index</h1>                                                                                                                                                                                                                                             </div><!-- /.container -->
-<p>Тут буде відображатись форма пошуку</p>
-
+<div class="form-inline">
+  <%= form_tag goto_path, method: :patch do %>
+    <div class="form-group">
+      <%= label_tag :id, "Перейти до пристрою: " %>
+      <%= text_field_tag :id, nil, size: "6" %>
+    </div>
+    <%= submit_tag "Вперед!", class: "btn btn-success btn-sm" %>
+  <% end %>
+</div>

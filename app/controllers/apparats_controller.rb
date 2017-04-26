@@ -1,8 +1,9 @@
 class ApparatsController < ApplicationController
   
-  before_action :set_apparat, only: [:show, :edit, :update, :destroy, :update_description, :add_contact]
+  before_action :set_apparat, only: [:show, :edit, :update, :destroy, 
+                                     :update_description, :add_contact]
   after_action :verify_authorized, except: [:index, :update_description]
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_policy_scoped, only: [:index ]
   
   def index
     @apparats = policy_scope Apparat
@@ -26,7 +27,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.save
       redirect_to @apparat
-      flash[:notice] = "Item was successfully created."
+      flash[:success] = "Item was successfully created."
     else
       render :new
     end
@@ -36,7 +37,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.update(apparat_params)
       redirect_to @apparat
-      flash[:notice] = "Item was successfully updated."
+      flash[:success] = "Item was successfully updated."
     else
       render :edit
     end
@@ -46,13 +47,13 @@ class ApparatsController < ApplicationController
     authorize @apparat
     @apparat.destroy
     redirect_to apparats_path
-    flash[:notice] = "Item was successfully deleted."
+    flash[:success] = "Item was successfully deleted."
   end
 
   def update_description
     desc = "#{@apparat.description}\n\r#{params[:description]}"
     @apparat.update(description: desc)
-    flash[:danger] = "Добавлено нову інформацію в опис."
+    flash[:success] = "Добавлено нову інформацію в опис."
     redirect_to @apparat 
   end
 
@@ -60,7 +61,20 @@ class ApparatsController < ApplicationController
     authorize @apparat
     @contact = Contact.find(params[:contact_id])
     @apparat.contacts << @contact
+    flash[:success] = "Новий контакт добавлено."
     redirect_to @apparat
+  end
+
+  def goto
+    if Apparat.where(id: params[:id]).exists?
+      set_apparat
+      authorize @apparat
+      redirect_to @apparat
+    else
+      authorize Apparat
+      flash[:danger] = "В базі нема пристрою з номером #{params[:id]}."
+      redirect_to root_path
+    end
   end
 
   private

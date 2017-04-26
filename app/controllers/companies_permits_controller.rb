@@ -8,7 +8,7 @@ class CompaniesPermitsController < ApplicationController
     authorize @companies_permit
     if @companies_permit.save
       create_apparat_role
-      flash[:notice] = "User's role was successfully created."
+      flash[:success] = "User's role was successfully created."
       redirect_to @user
     else
       render :new 
@@ -21,7 +21,7 @@ class CompaniesPermitsController < ApplicationController
     authorize @companies_permit
     if @companies_permit.update_attributes(companies_permit_params)
       update_apparats_role
-      flash[:notice] = "User's role was successfully updated"
+      flash[:success] = "User's role was successfully updated"
       redirect_to @companies_permit.user
     else
       flash[:danger] = "Role was not changed."
@@ -35,7 +35,7 @@ class CompaniesPermitsController < ApplicationController
     authorize @companies_permit
     @companies_permit.destroy
     @user.apparats.delete(@companies_permit.company.apparats)
-    flash[:notice] = "User's role was successfully deleted"
+    flash[:success] = "User's role was successfully deleted"
     redirect_to @user
   end
 

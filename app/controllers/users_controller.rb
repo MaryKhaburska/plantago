@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(secure_params)
     authorize @user
     if @user.save
-      redirect_to @user, notice: "Нового користувача створено."
+      redirect_to @user, success: "Нового користувача створено."
     else
       render :new
     end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def update
     authorize @user
     if @user.update(secure_params)
-      redirect_to @user, notice: "Інформацію користувача оновлено."
+      redirect_to @user, success: "Інформацію користувача оновлено."
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def destroy
     authorize @user
     @user.destroy
-    redirect_to users_path, notice: "Користувача видалено."
+    redirect_to users_path, success: "Користувача видалено."
   end
 
   private

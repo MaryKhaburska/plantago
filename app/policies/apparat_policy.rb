@@ -24,6 +24,10 @@ class ApparatPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def goto?
+    true
+  end
+
   def permitted_attributes
     if user.admin? or current_user_role == "expert"
       [:name, :company_id, :serial_number, :product_type, :description,

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       patch :add_contact
     end
   end
+  patch "/goto", to: "apparats#goto"
   
   resources :users do
     resources :apparats_permits, only: [:create, :update, :destroy]
