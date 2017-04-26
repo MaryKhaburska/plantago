@@ -6,7 +6,8 @@ class ApparatsController < ApplicationController
   after_action :verify_policy_scoped, only: [:index ]
   
   def index
-    @apparats = policy_scope Apparat
+    # flash.now[:info] = "I've got #{params[:product_type]}" if !params[:product_type].blank?
+    @apparats = policy_scope(Apparat)
   end
 
   def new

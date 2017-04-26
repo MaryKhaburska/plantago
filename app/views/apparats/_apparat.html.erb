@@ -1,6 +1,6 @@
 <tr>
   <td><%= apparat.id %></td>
-  <td><%= apparat.name %></td>
+  <td><%= link_to apparat.name, apparat %></td>
   <td><%= link_to apparat.company.name, apparat.company %></td>
   <td><%= apparat.serial_number %></td>
   <td><%= apparat.product_type %></td>

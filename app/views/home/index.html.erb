@@ -2,8 +2,21 @@
   <%= form_tag goto_path, method: :patch do %>
     <div class="form-group">
       <%= label_tag :id, "Перейти до пристрою: " %>
-      <%= text_field_tag :id, nil, size: "6" %>
+      <%= text_field_tag :id, nil, class: "form-control" %>
     </div>
-    <%= submit_tag "Вперед!", class: "btn btn-success btn-sm" %>
+    <%= submit_tag "Вперед!", class: "btn btn-success" %>
+  <% end %>
+</div>
+<br><br>
+<div class="form-inline">
+  <h2>Застосувати фільтр</h2>
+  <%= form_tag apparats_path, method: :get do %>
+    <%= label_tag :company, "Вибери компанію: " %>
+    <% companies = options_for_select(policy_scope(Company).map {|company| [company.name.titleize, company]}) %>
+    <%= select_tag :company, companies, include_blank: true, class: "form-control" %>
+    <%= label_tag :product_type, "Тип пристрою: " %>
+    <% types = options_for_select(Apparat.product_types.keys.map {|key| [key.humanize, key]}) %>
+    <%= select_tag :product_type, types, include_blank: true, class: "form-control"%>
+    <%= submit_tag "Шукати", class: "btn btn-success" %>
   <% end %>
 </div>
