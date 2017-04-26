@@ -8,6 +8,9 @@ class Apparat < ApplicationRecord
   has_and_belongs_to_many :contacts
 
   before_create :add_default_contact
+  
+  scope :product_type, -> (product_type) { where product_type: product_type }
+  scope :company, -> (company_id) { where company_id: company_id }
 
   def not_added_contacts
     self.company.contacts - self.contacts

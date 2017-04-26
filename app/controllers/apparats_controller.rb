@@ -8,6 +8,8 @@ class ApparatsController < ApplicationController
   def index
     # flash.now[:info] = "I've got #{params[:product_type]}" if !params[:product_type].blank?
     @apparats = policy_scope(Apparat)
+    @apparats = @apparats.company(params[:company_id]) if params[:company_id].present?
+    @apparats = @apparats.product_type(params[:product_type]) if params[:product_type].present?
   end
 
   def new
