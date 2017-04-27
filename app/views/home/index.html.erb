@@ -1,4 +1,5 @@
-<div class="form-inline">
+<div class="form-inline grey-back">
+  <legend>Використати номер</legend>
   <%= form_tag goto_path, method: :patch do %>
     <div class="form-group">
       <%= label_tag :id, "Перейти до пристрою: " %>
@@ -8,8 +9,8 @@
   <% end %>
 </div>
 <br><br>
-<div class="form-inline">
-  <h2>Застосувати фільтр</h2>
+<div class="form-inline grey-back">
+  <legend>Застосувати фільтр</legend>
   <%= form_tag apparats_path, method: :get do %>
     <%= label_tag :company_id, "Вибери компанію: " %>
     <% companies = options_for_select(policy_scope(Company).map {|company| [company.name.titleize, company.id]}) %>

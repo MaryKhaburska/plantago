@@ -1,39 +1,34 @@
-<%= form_for([@company, @contact]) do |f| %>
-  <% if @contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-      <ul>
-        <% @contact.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row"> 
+  <div class="col-sm-6 col-sm-offset-3 grey-back">
+    <%= form_for([@company, @contact]) do |f| %>
+      <%# <%= render "shared/error_messages", object: @contact %1> %>
+      <div class="form-group text-left">
+        <%= f.label :name, "Ім'я" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :name, "Ім'я" %>
-    <%= f.text_field :name %>
+      <div class="form-group text-left">
+        <%= f.label :phone, "Телефон" %>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+
+      <div class="form-group text-left">
+        <%= f.label :email, "Пошта" %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group text-left">
+        <%= f.label :skype, "Skype" %>
+        <%= f.text_field :skype, class: "form-control" %>
+      </div>
+
+      <div class="form-group text-left">
+        <%= f.check_box :default %>
+        <%= f.label :default, "Типовий контакт" %>
+      </div>
+
+      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    <% end %>
   </div>
+</div>
 
-  <div class="form-group">
-    <%= f.label :phone, "Телефон" %>
-    <%= f.text_field :phone %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email, "Пошта" %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :default, "Контакт по замовчуванню" %>
-    <%= f.check_box :default %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :skype, "Skype" %>
-    <%= f.text_field :skype %>
-  </div>
-
-  <%= f.submit yield(:button_text), class: "btn btn-success" %>
-<% end %>

@@ -15,8 +15,8 @@
         <%= f.password_field :password, class: "form-control" %>
       </div>
       <div class="ckeckbox text-left">
-        <%= f.label :admin, "Адміністратор" %>
         <%= f.check_box :admin %>
+        <%= f.label :admin, "Адміністратор" %>
       </div>
       <div>
         <%= f.submit yield(:button_text), class: "btn btn-success" %>

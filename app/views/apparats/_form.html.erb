@@ -1,33 +1,33 @@
-<div class="authform">
-  <%= form_for @apparat do |f| %>
-    <%= render "error_messages", object: @apparat %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, class: "form-control" %>
-    </div>
-    <div class="from-group">
-      <%= f.label :company %>
-      <%= f.collection_select :company_id, Company.all, :id, :name, {}, {class: "form-control"} %>
-    </div>
-    <div class="form-group">
-      <%= f.label :serial_number %>
-      <%= f.text_field :serial_number, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :type %>
-      <%= f.select(:product_type, Apparat.product_types.keys.map {|type| [type.titleize,type]}, {include_blank: true}, { class: "form-control"}) %>
-    </div>
-    <div class="form-group">
-      <%= f.label :ip_address %>
-      <%= f.text_field :ip_address, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit yield(:button_text), class: "btn btn-success" %>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 grey-back">
+    <%= form_for @apparat do |f| %>
+      <%= render "error_messages", object: @apparat %>
+      <div class="form-group text-left">
+        <%= f.label :name, "Назва" %>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="from-group text-left">
+        <%= f.label :company, "Компанія власник" %>
+        <%= f.collection_select :company_id, Company.all, :id, :name, {}, class: "form-control" %>
+      </div>
+      <div class="form-group text-left">
+        <%= f.label :serial_number, "Серійний номер" %>
+        <%= f.text_field :serial_number, class: "form-control" %>
+      </div>
+      <div class="form-group text-left">
+        <%= f.label :type, "Тип" %>
+        <%= f.select(:product_type, Apparat.product_types.keys.map {|type| [type.titleize,type]}, {include_blank: true}, { class: "form-control"}) %>
+      </div>
+      <div class="form-group text-left">
+        <%= f.label :ip_address, "ІР адреса" %>
+        <%= f.text_field :ip_address, class: "form-control" %>
+      </div>
+      <div class="form-group text-left">
+        <%= f.label :description, "Опис" %>
+        <%= f.text_area :description, class: "form-control", rows:"10" %>
+      </div>
+        <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    <% end %>
+  </div>
 </div>
 
