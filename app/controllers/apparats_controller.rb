@@ -1,7 +1,8 @@
 class ApparatsController < ApplicationController
   
   before_action :set_apparat, only: [:show, :edit, :update, :destroy, 
-                                     :update_description, :add_contact]
+                                     :update_description, :add_contact,
+                                     :remove_contact]
   after_action :verify_authorized, except: [:index, :update_description]
   after_action :verify_policy_scoped, only: [:index ]
   
@@ -64,6 +65,13 @@ class ApparatsController < ApplicationController
     @contact = Contact.find(params[:contact_id])
     @apparat.contacts << @contact
     flash[:success] = "Новий контакт добавлено."
+    redirect_to @apparat
+  end
+  
+  def remove_contact
+    authorize @apparat
+    contact = Contact.find(params[:contact_id])
+    @apparat.contacts.delete(contact)
     redirect_to @apparat
   end
 

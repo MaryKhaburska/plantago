@@ -22,6 +22,16 @@
         <%= f.label :ip_address, "ІР адреса" %>
         <%= f.text_field :ip_address, class: "form-control" %>
       </div>
+      <% if yield(:button_text) == "Редагувати" %>
+        <div class="form-group text-left">
+          <%= f.label :contacts, "Контакти" %>
+          <ul>
+            <% @apparat.contacts.each do |contact| %>
+              <li><%= contact.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="form-group text-left">
         <%= f.label :description, "Опис" %>
         <%= f.text_area :description, class: "form-control", rows:"10" %>

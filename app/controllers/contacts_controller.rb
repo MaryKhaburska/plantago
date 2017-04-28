@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
     @contact = @company.contacts.create(contact_params)
     if @contact.save
       flash[:success] = "Новий контакт створено."
-      redirect_to @company
+      redirect_to company_contact_path(@contact.company, @contact)
     else
       render :new
     end

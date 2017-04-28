@@ -1,57 +1,43 @@
-<div class="text-left">
+<div class="text-left col-md-6">
   <p>Твоя роль на пристрої: <strong><%= current_role @apparat %></strong></p>
   <table class="table table-stripped table-hover table-condensed">
     <tbody>
       <tr>
-        <td class="col-md-2"><strong>ID: </strong></td>
+        <td class="col-md-1"><strong>ID: </strong></td>
         <td><%= @apparat.id %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Назва: </strong></td>
+        <td class="col-md-1"><strong>Назва: </strong></td>
         <td><%= @apparat.name %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Компанія власник: </strong></td>
+        <td class="col-md-1"><strong>Компанія власник: </strong></td>
         <td><%= link_to @apparat.company.name, @apparat.company %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Серійний номер: </strong></td>
+        <td class="col-md-1"><strong>Серійний номер: </strong></td>
         <td><%= @apparat.serial_number %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Тип: </strong></td>
+        <td class="col-md-1"><strong>Тип: </strong></td>
         <td><%= @apparat.product_type.humanize if @apparat.product_type %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>IP адреса: </strong></td>
+        <td class="col-md-1"><strong>IP адреса: </strong></td>
         <td><%= @apparat.ip_address %></td>
-      </tr>
-      <tr>
-        <td class="col-md-2"><strong>Контакти: </strong></td>
-        <td>
-          <% @apparat.contacts.map do |contact| %>
-            <%= contact.name %> - <%= contact.phone %>
-          <% end %>
-        </td>
       </tr>
       <% if current_user.admin? %>
         <tr>
-          <td class="col-md-2"><strong>Інженери: </strong></td>
-          <td>
-            <% @apparat.users.map do |user| %>
-              <%= link_to user.name, user %>
-              <%= user.apparats_permits.find_by(apparat: @apparat).role %>
-            <% end %>
-          </td>
+          <td class="col-md-1"><strong>Інженери: </strong></td>
+          <td><%= render "users" %></td>
         </tr>
       <% end %>
       <tr>
-        <td class="col-md-2"><strong>Опис: </strong></td>
-        <td><%= simple_format(@apparat.description) %></td>
+        <td class="col-md-1"><strong>Контакти: </strong></td>
+        <td><%= render "contacts" %></td>
       </tr>
     </tbody>
   </table> 
-
   <p>
     <% if policy(@apparat).edit? %>
       <%= link_to "Редагувати", edit_apparat_path(@apparat), class: "btn btn-warning" %>
@@ -60,13 +46,17 @@
       <%= link_to "Видалити", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     <% end %>
   </p>
+</div>
 
+<div class="text-left col-md-6">
+  <legend>Опис:</legend>
+  <div id="description">
+    <%= simple_format(@apparat.description) %>
+  </div>
+  
   <% if policy(@apparat).update_description? %>
     <div id="add-description-form">
       <%= render "apparats/update_description_form" %>  
     </div>
-  <% end %>
-  <% if policy(@apparat).add_contact? %>
-    <%= render "add_new_contact" %>
   <% end %>
 </div>
