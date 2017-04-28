@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 grey-back">
     <%= form_for @company do |f| %>
-      <%= render "error_messages", object: @company %>
+      <%= render "shared/error_messages", object: @company %>
       <div class="form-group text-left">
         <%= f.label :name, "Назва" %>
         <%= f.text_field :name, autofocus: true, class: "form-control" %>

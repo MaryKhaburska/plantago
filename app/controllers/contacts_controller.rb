@@ -15,7 +15,8 @@ class ContactsController < ApplicationController
     @company = Company.find(params[:company_id])
     @contact = @company.contacts.create(contact_params)
     if @contact.save
-      redirect_to @company, success: "Новий контакт створено."
+      flash[:success] = "Новий контакт створено."
+      redirect_to @company
     else
       render :new
     end
@@ -24,7 +25,8 @@ class ContactsController < ApplicationController
   def update
     @contact = Contact.find(params[:id])
     if @contact.update(contact_params)
-      redirect_to company_contact_path(@contact.company, @contact), success: "Контакт змінено успішно."
+      flash[:success] = "Контакт відредаговано."
+      redirect_to company_contact_path(@contact.company, @contact)
     else
       render :edit
     end
@@ -32,7 +34,8 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact.destroy
-    redirect_to @contact.company, success: "Контакт видалено успішно."
+    flash[:success] = "Контакт видалено."
+    redirect_to @contact.company
   end
 
   private

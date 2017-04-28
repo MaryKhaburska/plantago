@@ -1,7 +1,7 @@
 <div class="row"> 
   <div class="col-sm-6 col-sm-offset-3 grey-back">
     <%= form_for([@company, @contact]) do |f| %>
-      <%# <%= render "shared/error_messages", object: @contact %1> %>
+      <%= render "shared/error_messages", object: @contact %>
       <div class="form-group text-left">
         <%= f.label :name, "Ім'я" %>
         <%= f.text_field :name, class: "form-control" %>
