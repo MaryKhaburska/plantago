@@ -1,9 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  def show
-  end
-
   def new
     @company = Company.find(params[:company_id])
     @contact = @company.contacts.build
@@ -27,7 +24,7 @@ class ContactsController < ApplicationController
   def update
     @contact = Contact.find(params[:id])
     if @contact.update(contact_params)
-      redirect_to company_contact_url(@contact), success: "Контакт змінено успішно."
+      redirect_to company_contact_path(@contact.company, @contact), success: "Контакт змінено успішно."
     else
       render :edit
     end

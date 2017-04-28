@@ -29,6 +29,6 @@
   </table>
   <% if current_user.admin? %>
     <%= link_to "Редагувати", edit_company_contact_url, class: "btn btn-warning" %>
-    <%= link_to "Видалити", company_contact_url(@contact), method: :delete, data: {confirm: "Впевнений що хочеш видалити контакт?"}, class: "btn btn-danger" %>
+    <%= link_to "Видалити", company_contact_url(@contact.company, @contact), method: :delete, data: {confirm: "Впевнений що хочеш видалити контакт?"}, class: "btn btn-danger" %>
   <% end %>
 </div>

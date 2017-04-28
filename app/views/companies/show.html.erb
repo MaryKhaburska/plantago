@@ -3,45 +3,32 @@
   <table class="table table-stripped table-hover table-condensed">
     <tbody>
       <tr>
-        <td class="col-md-2"><strong>Назва: </strong></td>
+        <td class="col-md-1"><strong>Назва: </strong></td>
         <td><%= @company.name %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Телефон: </strong></td>
+        <td class="col-md-1"><strong>Телефон: </strong></td>
         <td><%= @company.phone %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Опис: </strong></td>
+        <td class="col-md-1"><strong>Опис: </strong></td>
         <td><%= simple_format(@company.description) %></td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Пристрої: </strong></td>
+        <td class="col-md-1"><strong>Пристрої: </strong></td>
         <td>
-          <% @company.apparats.each do |apparat| %>
-            <%= link_to apparat.name, apparat %> 
-          <% end %>
+          <ul>
+            <% @company.apparats.each do |apparat| %>
+              <li><%= link_to apparat.name, apparat %></li>
+            <% end %>
+          </ul>
         </td>
       </tr>
       <tr>
-        <td class="col-md-2"><strong>Контакти:</strong></td>
-        <td>
-          <% @company.contacts.each do |contact| %>
-            <%= link_to contact.name, company_contact_url(@company, contact) %>
-          <% end %>
-        <span><%= link_to "New", new_company_contact_url(@company), class: "btn btn-xs btn-primary" %></span>
-        </td>
-      </tr>
-      <% if current_user.admin? %>
-        <tr>
-          <td class="col-md-2"><strong>Інженери: </strong></td>
-          <td>
-            <% @company.users.each do |user| %>
-              <%= link_to user.name, user %> 
-              <%= user.companies_permits.find_by(company: @company).role %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+        <td class="col-md-1"><strong>Контакти:</strong></td>
+        <td><%= render "contacts" %></td>
+     </tr>
+     <%= render "users" %>
     </tbody>
   </table>
   <p>

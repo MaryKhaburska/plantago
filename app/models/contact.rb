@@ -2,5 +2,5 @@ class Contact < ApplicationRecord
   belongs_to :company
   validates :name, presence: true
   
-  has_and_belongs_to_many :apparts
+  has_and_belongs_to_many :apparats
 end
