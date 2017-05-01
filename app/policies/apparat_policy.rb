@@ -9,24 +9,24 @@ class ApparatPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    false
   end
 
   def update_description?
     current_user_role == "writer" or
-    current_user_role == "expert" or 
+    current_user_role == "expert" or
     user.admin?
   end
 
   def add_contact?
-    current_user_role == "writer" or 
-    current_user_role == "expert" or 
+    current_user_role == "writer" or
+    current_user_role == "expert" or
     user.admin?
   end
 
   def remove_contact?
-    current_user_role == "writer" or 
-    current_user_role == "expert" or 
+    current_user_role == "writer" or
+    current_user_role == "expert" or
     user.admin?
   end
 
@@ -52,6 +52,6 @@ class ApparatPolicy < ApplicationPolicy
       else
         scope.where(id: user.apparats)
       end
-    end    
+    end
   end
 end

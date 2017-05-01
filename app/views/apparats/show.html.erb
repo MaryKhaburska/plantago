@@ -37,13 +37,10 @@
         <td><%= render "contacts" %></td>
       </tr>
     </tbody>
-  </table> 
+  </table>
   <p>
     <% if policy(@apparat).edit? %>
       <%= link_to "Редагувати", edit_apparat_path(@apparat), class: "btn btn-warning" %>
-    <% end %>
-    <% if policy(@apparat).destroy? %> 
-      <%= link_to "Видалити", @apparat, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     <% end %>
   </p>
 </div>
@@ -53,10 +50,10 @@
   <div id="description">
     <%= simple_format(@apparat.description) %>
   </div>
-  
+
   <% if policy(@apparat).update_description? %>
     <div id="add-description-form">
-      <%= render "apparats/update_description_form" %>  
+      <%= render "apparats/update_description_form" %>
     </div>
   <% end %>
 </div>

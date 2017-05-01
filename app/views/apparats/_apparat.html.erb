@@ -13,9 +13,5 @@
     <% if policy(apparat).edit? %>
       <%= link_to "Редагувати", edit_apparat_path(apparat), class: "btn btn-success btn-xs" %>
     <% end %> 
-    <% if policy(apparat).destroy? %>
-      <%= link_to "Видалити", apparat, method: :delete, data: {confirm: "Впевнений що хочеш видалити цей пристрій?"}, class: "btn btn-danger btn-xs" %>
-    <% end %>
   </td>
-</tr>  
-
+</tr>
