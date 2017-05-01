@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170425115237) do
     t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "contact"
     t.string   "ip_address"
     t.integer  "company_id"
     t.index ["company_id"], name: "index_apparats_on_company_id"
