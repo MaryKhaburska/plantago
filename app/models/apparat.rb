@@ -11,6 +11,7 @@ class Apparat < ApplicationRecord
   
   scope :product_type, -> (product_type) { where product_type: product_type }
   scope :company, -> (company_id) { where company_id: company_id }
+  scope :desc_fragment, -> (desc_fragment) { where "description like ?", "%#{desc_fragment}%" }
 
   def not_added_contacts
     self.company.contacts - self.contacts
@@ -20,5 +21,5 @@ class Apparat < ApplicationRecord
 
    def add_default_contact
       self.contacts << self.company.contacts.where(default: true)
-    end
+   end
 end

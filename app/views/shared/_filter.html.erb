@@ -6,7 +6,9 @@
     <%= select_tag :company_id, companies, include_blank: true, class: "form-control" %>
     <%= label_tag :product_type, "Тип пристрою: " %>
     <% types = options_for_select(Apparat.product_types.keys.map {|key| [key.humanize, key]}) %>
-    <%= select_tag :product_type, types, include_blank: true, class: "form-control"%>
+    <%= select_tag :product_type, types, include_blank: true, class: "form-control" %>
+    <%= label_tag :desc_fragment, "Рядок:" %>
+    <%= text_field_tag :desc_fragment, nil, placeholder: "фрагмент опису", class: "form-control" %>
     <%= submit_tag "Шукати", class: "btn btn-success" %>
   <% end %>
 </div>
