@@ -10,15 +10,11 @@ class CompanyPolicy < ApplicationPolicy
 
    def destroy?
     user.admin?
-  end
+   end
 
   def permitted_attributes
-    if user.admin? or current_user_role == "expert"
+    if user.admin?
       [:name, :description, :phone]
-    elsif current_user_role == "writer"
-      [:description]
-    else
-      false
     end
   end
 
