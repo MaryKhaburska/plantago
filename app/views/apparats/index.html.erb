@@ -4,13 +4,17 @@
   <div class="apparat-list-item">
     <% if policy(apparat).update? %>
       <%= link_to (edit_apparat_path(apparat)) do %>
-        <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
-        <p><%= apparat.description %></p>
+        <div>
+          <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
+          <p><%= apparat.description %></p>
+        </div>
       <% end %>
     <% else %>
       <%= link_to (apparat_path(apparat)) do %>
-        <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
-        <p><%= apparat.description %></p>
+        <div>
+          <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
+          <p><%= apparat.description %></p>
+        </div>
       <% end %>
     <% end %>
   </div>

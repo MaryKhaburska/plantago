@@ -1,9 +1,7 @@
 class ApparatPolicy < ApplicationPolicy
 
   def create?
-    current_user_role == "writer" or
-    current_user_role == "expert" or
-    user.admin?
+    true
   end
 
   def update?
@@ -37,14 +35,8 @@ class ApparatPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if user.admin? or current_user_role == "expert"
-      [:name, :company_id, :serial_number, :product_type, :description,
-       :ip_address, :contact_id]
-    elsif current_user_role == "writer"
-      [:description, :contact_id]
-    else
-      false
-    end
+    [:name, :company_id, :serial_number, :product_type, :description,
+     :ip_address, :contact_id]
   end
 
   class Scope < Scope

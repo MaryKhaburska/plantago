@@ -30,6 +30,7 @@ class ApparatsController < ApplicationController
     @apparat = Apparat.new(apparat_params)
     authorize @apparat
     if @apparat.save
+      create_permit @apparat
       redirect_to @apparat
       flash[:success] = "Item was successfully created."
     else
@@ -97,5 +98,9 @@ class ApparatsController < ApplicationController
 
     def apparat_params
       params.require(:apparat).permit(policy(Apparat).permitted_attributes)
+    end
+
+    def create_permit(apparat)
+      apparat.apparats_permits.create(user: current_user, role: "newbie")
     end
 end
