@@ -1,7 +1,21 @@
 <%= render "shared/filter" %>
-<% if current_user.admin? %>
-  <p class="text-left"><%= link_to "Новий Пристрій", new_apparat_path, class: "btn btn-info btn-sm" %></p>
+
+<% @apparats.each do |apparat| %> 
+  <div class="apparat-list-item">
+    <% if policy(apparat).update? %>
+      <%= link_to (edit_apparat_path(apparat)) do %>
+        <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
+        <p><%= apparat.description %></p>
+      <% end %>
+    <% else %>
+      <%= link_to (apparat_path(apparat)) do %>
+        <span class="list-item-header"><%= apparat.id %> <%= apparat.name %></span>
+        <p><%= apparat.description %></p>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
-<ul>
-  <%= render @apparats %>
-</li>
+
+<% if policy(Apparat).create? %>
+  <p class="new-apparat"><%= link_to "Новий Пристрій", new_apparat_path, class: "btn btn-info btn-sm" %></p>
+<% end %>
