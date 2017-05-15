@@ -97,5 +97,4 @@ class ApparatsController < ApplicationController
     def apparat_params
       params.require(:apparat).permit(policy(Apparat).permitted_attributes)
     end
-  
 end
