@@ -54,7 +54,8 @@ class ApparatsController < ApplicationController
   end
 
   def update_description
-    desc = "#{@apparat.description}\n\r#{params[:description]}"
+    date = DateTime.now.strftime("%Y-%m-%d %H:%m")
+    desc = "#{@apparat.description}\n\r#{date} (#{current_user.name}): #{params[:description]}"
     @apparat.update(description: desc)
     flash[:success] = "Добавлено нову інформацію в опис."
     redirect_to @apparat 
