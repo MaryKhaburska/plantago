@@ -1,7 +1,7 @@
 class ContactPolicy < ApplicationPolicy
   
   def create?
-    true
+    current_user_role == "expert" or user.admin?
   end
 
   def update? 
