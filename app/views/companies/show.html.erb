@@ -15,16 +15,6 @@
         <td><%= simple_format(@company.description) %></td>
       </tr>
       <tr>
-        <td class="col-md-1"><strong>Пристрої: </strong></td>
-        <td>
-          <ul>
-            <% @company.apparats.each do |apparat| %>
-              <li><%= link_to apparat.name, apparat %></li>
-            <% end %>
-          </ul>
-        </td>
-      </tr>
-      <tr>
         <td class="col-md-1"><strong>Контакти:</strong></td>
         <td><%= render "contacts" %></td>
      </tr>
