@@ -12,7 +12,7 @@
       </tr>
       <tr>
         <td class="col-md-1"><strong>Компанія власник: </strong></td>
-        <td><%= link_to @apparat.company.name, @apparat.company %></td>
+        <td><%= @apparat.company.name if @apparat.company %></td>
       </tr>
       <tr>
         <td class="col-md-1"><strong>Серійний номер: </strong></td>

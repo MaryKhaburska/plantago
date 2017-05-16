@@ -16,6 +16,11 @@
           <li><%= link_to "Інженери", users_path %></li>
         <% end %>
         <li><%= link_to "Пристрої", apparats_path %></li>
+        <li>
+          <% if policy(Apparat).create? %>
+            <%= link_to "Новий Пристрій", new_apparat_path %>
+          <% end %>
+        </li>
         <li><%= link_to "Компанії", companies_path %></li>
       <% end %>
     </ul>

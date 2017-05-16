@@ -7,7 +7,7 @@ class CompaniesPermitsController < ApplicationController
     @companies_permit = @user.companies_permits.build(companies_permit_params)
     authorize @companies_permit
     if @companies_permit.save
-      create_apparat_role
+      # create_apparat_role
       flash[:success] = "User's role was successfully created."
       redirect_to @user
     else
@@ -41,11 +41,15 @@ class CompaniesPermitsController < ApplicationController
 
   private
 
-    def create_apparat_role
-      @companies_permit.company.apparats.map do |apparat|
-        @user.apparats_permits.
-          create(apparat: apparat, role: @companies_permit.role)
-      end
+    # def create_apparat_role
+    #   @companies_permit.company.apparats.map do |apparat|
+    #     @user.apparats_permits.
+    #       create(apparat: apparat, role: @companies_permit.role)
+    #   end
+    # end
+    
+    def create_apparats_roles(user, company)
+      apparats = company.apparats 
     end
 
     def update_apparats_role
@@ -61,5 +65,4 @@ class CompaniesPermitsController < ApplicationController
     def companies_permit_params
       params.require(:companies_permit).permit(:user_id, :company_id, :role)
     end
-
 end
