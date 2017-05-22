@@ -4,10 +4,11 @@ class CompaniesPermitsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
+    @company = Company.find(companies_permit_params[:company_id])
     @companies_permit = @user.companies_permits.build(companies_permit_params)
     authorize @companies_permit
     if @companies_permit.save
-      # create_apparat_role
+      create_apparats_roles(@user, @company)
       flash[:success] = "User's role was successfully created."
       redirect_to @user
     else
@@ -41,15 +42,13 @@ class CompaniesPermitsController < ApplicationController
 
   private
 
-    # def create_apparat_role
-    #   @companies_permit.company.apparats.map do |apparat|
-    #     @user.apparats_permits.
-    #       create(apparat: apparat, role: @companies_permit.role)
-    #   end
-    # end
-    
     def create_apparats_roles(user, company)
-      apparats = company.apparats 
+      apparats = company.apparats - user.apparats
+      role = companies_permit_params[:role]
+      apparats.map do |apparat|
+        user.apparats_permits.create(apparat: apparat, role: role)
+      end
+      flash[:success] = "Користувачу #{user.name} додано права на всі пристрої компанії #{company.name} "
     end
 
     def update_apparats_role
