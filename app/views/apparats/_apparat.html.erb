@@ -1,0 +1,27 @@
+<div class="apparat-list-item">
+  <% if policy(apparat).update? %>
+    <%= link_to (edit_apparat_path(apparat)) do %>
+      <div>
+        <div class="row list-item-header">
+          <span class="col-md-1 text-center"><%= apparat.id %></span>
+          <span class="col-md-3"><%= short_name(apparat.name) %></span>
+          <span class="col-md-2"><%= apparat.ip_address if apparat.ip_address %></span>
+          <span class="col-md-1"><%= apparat.company.name if apparat.company %></span>
+        </div>
+        <p><%= apparat.description %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to (apparat_path(apparat)) do %>
+      <div>
+        <div class="row list-item-header">
+          <span class="col-md-1 text-center"><%= apparat.id %></span>
+          <span class="col-md-3"><%= apparat.name %></span>
+          <span class="col-md-2"><%= apparat.ip_address if apparat.ip_address %></span>
+          <span class="col-md-1"><%= apparat.company.name if apparat.company %></span>
+        </div>
+        <p><%= apparat.description %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
