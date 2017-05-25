@@ -2,7 +2,7 @@
   <%= form_tag update_description_apparat_path(@apparat), method: :patch do %>
     <div class="form_group">
       <%= text_area_tag :description, nil, class: "form-control" %><br>
-      <%= submit_tag "Добавити опис", class: "btn btn-warning" %>
+      <%= submit_tag "Добавити опис", class: "btn btn-default pull-right" %>
     </div>
   <% end %>
 </div>

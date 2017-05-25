@@ -1,8 +1,4 @@
-<ul class="list-unstyled">
-  <% @apparat.users.map do |user| %>
-    <li>
-      <%= link_to user.name, user %>
-      <%= user.apparats_permits.find_by(apparat: @apparat).role %>
-    </li>
-  <% end %>
-</ul>
+<% @apparat.users.map do |user| %>
+  <%= link_to user.name, user %>
+  <%= user.apparats_permits.find_by(apparat: @apparat).role %>
+<% end %>

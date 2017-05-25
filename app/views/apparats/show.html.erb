@@ -1,59 +1,69 @@
-<div class="text-left col-md-6">
-  <p>Твоя роль на пристрої: <strong><%= current_role @apparat %></strong></p>
-  <table class="table table-stripped table-hover table-condensed">
-    <tbody>
-      <tr>
-        <td class="col-md-1"><strong>ID: </strong></td>
-        <td><%= @apparat.id %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Назва: </strong></td>
-        <td><%= @apparat.name %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Компанія власник: </strong></td>
-        <td><%= @apparat.company.name if @apparat.company %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Серійний номер: </strong></td>
-        <td><%= @apparat.serial_number %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Тип: </strong></td>
-        <td><%= @apparat.product_type.humanize if @apparat.product_type %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>IP адреса: </strong></td>
-        <td><%= @apparat.ip_address %></td>
-      </tr>
-      <% if current_user.admin? %>
-        <tr>
-          <td class="col-md-1"><strong>Інженери: </strong></td>
-          <td><%= render "users" %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td class="col-md-1"><strong>Контакти: </strong></td>
-        <td><%= render "contacts" %></td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    <% if policy(@apparat).edit? %>
-      <%= link_to "Редагувати", edit_apparat_path(@apparat), class: "btn btn-warning" %>
-    <% end %>
-  </p>
-</div>
+<div class="apparat-main-page">
+  <div class="apparat-information">
+    <div class="container">
+      <h1 class="text-left">Пристрій № <%= @apparat.id %></h1>
+      
+      <div class="row">
+        <div class="col-md-2 col-sm-2">
+          <h2>Назва:</h2>
+          <span class="whitebox">
+            <%= @apparat.name %>
+          </span>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h2>Тип:</h2>
+          <span class="whitebox">
+            <%= @apparat.product_type.humanize if @apparat.product_type %>
+          </span>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h2>Компанія:</h2>
+          <span class="whitebox">
+            <%= @apparat.company.name if @apparat.company %>
+          </span>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <% if current_user.admin? %>
+          <h2>Закріплені інженери:</h2>
+            <span class="whitebox">
+              <%= render "users" %>
+            </span>
+          <% end %>
+        </div>
+      </div>
 
-<div class="text-left col-md-6">
-  <legend>Опис:</legend>
-  <div id="description">
-    <%= simple_format(@apparat.description) %>
-  </div>
+      <div class="row">
+        <div class="col-md-2 col-sm-2">
+          <h2>Серійний номер:</h2>
+          <span class="whitebox">
+            <%= @apparat.serial_number if @apparat.serial_number %>
+          </span>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h2>ІР адреса:</h2>
+          <span class="whitebox">
+            <%= @apparat.ip_address %>
+          </span>
+        </div>
+        <div class="col-md-8 col-sm-8">
+          <h2>Контакти:</h2>
+          <span class="whitebox">
+            <%= render "contacts" %>
+          </span>
+        </div>
+      </div>
 
-  <% if policy(@apparat).update_description? %>
-    <div id="add-description-form">
-      <%= render "apparats/update_description_form" %>
+      <h2>Опис:</h2>
+      <span class="whitebox description">
+        <%= simple_format(@apparat.description) %>
+      </span>
     </div>
-  <% end %>
+  </div>
+  <div class="container">
+    <div class="apparat-add-description">
+      <% if policy(@apparat).update_description? %>
+        <%= render "apparats/update_description_form" %>
+      <% end %>
+    </div>
+  </div>
 </div>

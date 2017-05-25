@@ -1,19 +1,13 @@
-<table class="table table-responsive table-condensed">
-  <tbody>
-    <% @apparat.contacts.map do |contact| %>
-      <tr>
-        <td><%= link_to contact.name, company_contact_path(contact.company, contact) %></td>
-        <td><%= contact.phone %></td>
-        <% if policy(@apparat).remove_contact? %>
-          <td><%= link_to "x", remove_contact_apparat_path(@apparat, contact_id: contact.id), class: "btn btn-danger btn-xs" %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  <% if policy(@apparat).add_contact? and !@apparat.not_added_contacts.empty? %>
-    <%= form_tag add_contact_apparat_path(@apparat), method: :patch do %>
-        <%= select_tag :contact_id, options_for_select(@apparat.not_added_contacts.map{|c| [c.name, c.id]}), class: "input-xs" %>
-        <%= submit_tag "+", class: "btn btn-xs btn-success" %>
-    <% end %>
+<% @apparat.contacts.map do |contact| %>
+  <%= link_to contact.name, company_contact_path(contact.company, contact) %>
+  <%= contact.phone %>
+  <% if policy(@apparat).remove_contact? %>
+    <%= link_to "x", remove_contact_apparat_path(@apparat, contact_id: contact.id), class: "btn btn-danger btn-xs" %>
   <% end %>
+<% end %>
+<% if policy(@apparat).add_contact? and !@apparat.not_added_contacts.empty? %>
+  <%= form_tag add_contact_apparat_path(@apparat), method: :patch do %>
+      <%= select_tag :contact_id, options_for_select(@apparat.not_added_contacts.map{|c| [c.name, c.id]}), class: "input-xs" %>
+      <%= submit_tag "+", class: "btn btn-xs btn-success" %>
+  <% end %>
+<% end %>
