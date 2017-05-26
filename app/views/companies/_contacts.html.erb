@@ -2,7 +2,11 @@
 <ul>
   <% @company.contacts.each do |contact| %>
     <li>
-      <%= link_to contact.name, company_contact_url(@company, contact) %>
+      <% if policy(contact).update? %>
+        <%= link_to contact.name, edit_company_contact_url(@company, contact) %>
+      <% else %>
+        <%= link_to contact.name, company_contact_url(@company, contact) %>
+      <% end %>
       <%= contact.phone %>
       <% if contact.default %>
          (основний)

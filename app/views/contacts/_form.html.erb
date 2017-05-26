@@ -1,33 +1,39 @@
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3 grey-back">
-    <%= form_for([@company, @contact]) do |f| %>
-      <%= render "shared/error_messages", object: @contact %>
-      <div class="form-group text-left">
-        <%= f.label :name, "Ім'я" %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+<div class="main-page">
+  <%= form_for([@company, @contact]) do |f| %>
+    <div class="information">
+      <div class="container">
+        <%= render "shared/error_messages", object: @contact %>
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <h2><%= f.label :name, "Ім'я" %></h2>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
 
-      <div class="form-group text-left">
-        <%= f.label :phone, "Телефон" %>
-        <%= f.text_field :phone, class: "form-control" %>
-      </div>
+          <div class="col-md-4 col-sm-4">
+            <h2><%= f.label :phone, "Телефон" %></h2>
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+        </div>
 
-      <div class="form-group text-left">
-        <%= f.label :email, "Пошта" %>
-        <%= f.text_field :email, class: "form-control" %>
-      </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <h2><%= f.label :email, "Пошта" %></h2>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
 
-      <div class="form-group text-left">
-        <%= f.label :skype, "Skype" %>
-        <%= f.text_field :skype, class: "form-control" %>
+          <div class="col-md-4 col-sm-4">
+            <h2><%= f.label :skype, "Skype" %></h2>
+            <%= f.text_field :skype, class: "form-control" %>
+          </div>
+        </div>
+        <h2>
+          <%= f.check_box :default %>
+          <%= f.label :default, "Основний контакт" %>
+        </h2>
       </div>
-
-      <div class="form-group text-left">
-        <%= f.check_box :default %>
-        <%= f.label :default, "Основний контакт" %>
-      </div>
-
-      <%= f.submit yield(:button_text), class: "btn btn-success" %>
-    <% end %>
-  </div>
+    </div>
+    <div class="container">
+      <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+    </div>
+  <% end %>
 </div>

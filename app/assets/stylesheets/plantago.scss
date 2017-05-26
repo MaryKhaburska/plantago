@@ -98,11 +98,14 @@ h2 {
       background-color: white;
       width: 100%;
       min-height: 2em;
+      line-height: 2em;
+      padding: 0 10px;
     }
 
     .description {
       padding: 1em 2em;
       border: 1px solid #333;
+      line-height: 1.5em;
     }
   }
 }

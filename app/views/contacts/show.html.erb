@@ -1,34 +1,30 @@
-<div class="text-left">
-  <table class="table table-stripped table-hover table-condensed">
-    <tbody>
-      <tr>
-        <td class="col-md-1"><strong>Ім'я</strong><td>
-        <td><%= @contact.name %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Телефон</strong><td>
-        <td><%= @contact.phone %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Пошта</strong><td>
-        <td><%= @contact.email %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Скайп</strong><td>
-        <td><%= @contact.skype %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Основний контакт</strong><td>
-        <td><%= @contact.default %></td>
-      </tr>
-      <tr>
-        <td class="col-md-1"><strong>Компанія</strong><td>
-        <td><%= link_to @contact.company.name, @contact.company %></td>
-      </tr>
-    </tbody>
-  </table>
-  <% if current_user.admin? %>
-    <%= link_to "Редагувати", edit_company_contact_url, class: "btn btn-warning" %>
-    <%= link_to "Видалити", company_contact_url(@contact.company, @contact), method: :delete, data: {confirm: "Впевнений що хочеш видалити контакт?"}, class: "btn btn-danger" %>
-  <% end %>
+<div class="main-page">
+  <div class="information">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4-">
+          <h2>Ім'я</h2>
+          <div class="whitebox"><%= @contact.name %></div>
+        </div>
+        <div class="col-md-4 col-sm-4-">
+          <h2>Телефон</h2>
+          <div class="whitebox"><%= @contact.phone %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4-">
+          <h2>Пошта</h2>
+          <div class="whitebox"><%= @contact.email %></div>
+        </div>
+        <div class="col-md-4 col-sm-4-">
+          <h2>Skype</h2>
+          <div class="whitebox"><%= @contact.skype %></div>
+        </div>
+      </div>
+      <% if @contact.default %>
+        <h2>Основний контакт</h2>
+      <% end %>
+    </div>
+  </div>
 </div>
+
