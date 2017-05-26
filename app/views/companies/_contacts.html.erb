@@ -1,8 +1,18 @@
+<h2>Контакти: </h2>
 <ul>
   <% @company.contacts.each do |contact| %>
     <li>
       <%= link_to contact.name, company_contact_url(@company, contact) %>
       <%= contact.phone %>
+      <% if contact.default %>
+         (основний)
+      <% end %>
+      <% if policy(contact).destroy? %>
+        <%= link_to "x", company_contact_path(@company, contact),
+            method: :delete,
+            data: { confirm: "Видалити контакт?" },
+            class: "btn btn-danger btn-xs" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

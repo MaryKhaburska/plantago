@@ -1,21 +1,41 @@
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3 grey-back">
-    <%= form_for @company do |f| %>
-      <%= render "shared/error_messages", object: @company %>
-      <div class="form-group text-left">
-        <%= f.label :name, "Назва" %>
-        <%= f.text_field :name, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group text-left">
-        <%= f.label :phone, "Телефон" %>
-        <%= f.text_field :phone, class: "form-control" %>
-      </div>
-     <div class="form-group text-left">
-        <%= f.label :description, "Опис" %>
-        <%= f.text_area :description, class: "form-control", rows: "10" %>
-      </div>
-        <%= f.submit yield(:button_text), class: "btn btn-success" %>
-    <% end %>
-  </div>
-</div>
+<div class="main-page">
+  <%= form_for @company do |f| %>
+    <div class="information">
+      <div class="container">
+        <%= render "shared/error_messages", object: @company %>
+        
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :name, "Назва" %></h2>
+            <%= f.text_field :name, class: "whitebox"%>
+          </div>
 
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :phone, "Телефон" %></h2>
+            <%= f.text_field :phone, class: "whitebox" %>
+          </div>
+        </div>
+
+        <% if @company.id %>
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <%= render "contacts" %>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <%= render "users" %>
+          </div>
+        </div>
+        <% end %>
+
+        <div>
+          <h2><%= f.label :description, "Опис" %></h2>
+          <%= f.text_area :description, rows: "10", class: "whitebox" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+    </div>
+  <% end %>
+</div>

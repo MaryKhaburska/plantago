@@ -7,13 +7,13 @@
       <div class="list-item">
         <%= link_to edit_company_path(company) do %>
           <div class="row list-item-header">
-            <span class="col-md-2 col-sm-2 text-center">
+            <span class="col-md-6 col-sm-6 text-center">
               <%= company.name %>
             </span>
-            <p>
-              <%= company.description %>
-            </p>
           </div>
+          <p>
+            <%= company.description %>
+          </p>
         <% end %>
       </div>
     <% end %>
