@@ -1,16 +1,17 @@
 <div class="apparat-main-page">
-  <div class="apparat-information">
-    <div class="container">
-      <h1 class="text-left">Пристрій № <%= @apparat.id %></h1>
-      <div class="row">
-        <%= form_for @apparat do |f| %>
-          <%= render "shared/error_messages", object: @apparat %>
+  <%= form_for @apparat do |f| %>
+    <div class="apparat-information">
+      <div class="container">
+        <%= render "shared/error_messages", object: @apparat %>
+        <h1 class="text-left">Пристрій № <%= @apparat.id %></h1>
+        
+        <div class="row">
           <div class="col-md-2 col-sm-2">
             <h2><%= f.label :name, "Назва" %></h2>
             <%= f.text_field :name, class: "whitebox" %>
           </div>
           <div class="col-md-2 col-sm-2">
-            <h2><%= f.label :type, "Тип" %></h2>
+            <h2><%= f.label :type, "Тип"  %></h2>
             <%= f.select(:product_type, 
                          Apparat.product_types.keys.map {|type| [type.titleize,type]}, 
                          {include_blank: true}, { class: "whitebox"}) %>
@@ -22,13 +23,13 @@
           </div>
           <div class="col-md-6 col-sm-6">
             <% if current_user.admin? %>
-            <h2>Закріплені інженери:</h2>
-              <span class="whitebox">
-                <%= render "users" %>
-              </span>
+              <h2>Закріплені інженери:</h2>
+              <div class="whitebox">
+                  <%= render "users" %>
+              </div>
             <% end %>
           </div>
-        </div> <!-- class="row" -->
+        </div>
 
         <div class="row">
           <div class="col-md-2 col-sm-2">
@@ -45,15 +46,16 @@
               <%= render "contacts" %>
             </span>
           </div>
-        </div> <!-- class="row" -->
-          <div class="form-group text-left">
-            <%= f.label :description, "Опис" %>
-            <%= f.text_area :description, class: "form-control", rows:"10" %>
-          </div>
-            <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
-        <% end %>
+        </div>
+        <div>
+          <h2><%= f.label :description, "Опис" %></h2>
+          <%= f.text_area :description, rows: "10", class: "whitebox" %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
+    <div class="container">
+      <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+    </div>
+  <% end %>
+</div>
