@@ -1,11 +1,11 @@
 <% if current_user.admin? %>
-  <tr>
-    <td class="col-md-1"><strong>Інженери: </strong></td>
-    <td>
-      <% @company.users.each do |user| %>
+  <h2>Інженери:</h2>
+  <ul>
+    <% @company.users.each do |user| %>
+      <li>
         <%= link_to user.name, user %> 
         <%= user.companies_permits.find_by(company: @company).role %>
-      <% end %>
-    </td>
-  </tr>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

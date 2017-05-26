@@ -3,18 +3,5 @@
     <%= link_to "Нова Компанія", new_company_path, class: "btn btn-default new-record" %>
   <% end %>
 
-    <% @companies.map do |company| %>
-      <div class="list-item">
-        <%= link_to edit_company_path(company) do %>
-          <div class="row list-item-header">
-            <span class="col-md-6 col-sm-6 text-center">
-              <%= company.name %>
-            </span>
-          </div>
-          <p>
-            <%= company.description %>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
+  <%= render @companies %>
 </div>

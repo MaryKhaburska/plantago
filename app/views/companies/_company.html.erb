@@ -1,0 +1,26 @@
+<div class="list-item">
+  <% if policy(company).update? %>
+    <%= link_to edit_company_path(company) do %>
+      <div class="row list-item-header">
+        <span class="col-md-6 col-sm-6 text-center">
+          <%= company.name %>
+        </span>
+      </div>
+      <p>
+        <%= company.description %>
+      </p>
+    <% end %>
+  <% else %>
+    <%= link_to company_path(company) do %>
+      <div class="row list-item-header">
+        <span class="col-md-6 col-sm-6 text-center">
+          <%= company.name %>
+        </span>
+      </div>
+      <p>
+        <%= company.description %>
+      </p>
+    <% end %>
+  <% end %>
+
+</div>
