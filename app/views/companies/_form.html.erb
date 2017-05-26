@@ -5,12 +5,12 @@
         <%= render "shared/error_messages", object: @company %>
         
         <div class="row">
-          <div class="col-md-2 col-sm-2">
+          <div class="col-md-4 col-sm-4">
             <h2><%= f.label :name, "Назва" %></h2>
             <%= f.text_field :name, class: "whitebox"%>
           </div>
 
-          <div class="col-md-2 col-sm-2">
+          <div class="col-md-4 col-sm-4">
             <h2><%= f.label :phone, "Телефон" %></h2>
             <%= f.text_field :phone, class: "whitebox" %>
           </div>
@@ -35,6 +35,9 @@
     </div>
 
     <div class="container">
+      <% if @company.id && policy(@company).destroy? %> 
+        <%= link_to "Видалити", @company, method: :delete, data: { confirm: "Впевнений що хочеш видати компанію?" }, class: "btn btn-danger pull-right" %>
+      <% end %>
       <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
     </div>
   <% end %>
