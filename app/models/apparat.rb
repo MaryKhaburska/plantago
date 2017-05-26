@@ -7,8 +7,6 @@ class Apparat < ApplicationRecord
   has_many :users, through: :apparats_permits
   has_and_belongs_to_many :contacts
 
-  before_create :add_default_contact
-  
   scope :product_type, -> (product_type) { where product_type: product_type }
   scope :company, -> (company_id) { where company_id: company_id }
   scope :desc_fragment, -> (desc_fragment) { where "description like ?", "%#{desc_fragment}%" }
@@ -20,10 +18,4 @@ class Apparat < ApplicationRecord
       []
     end
   end
-
-  private
-
-   def add_default_contact
-      self.contacts << self.company.contacts.where(default: true)
-   end
 end

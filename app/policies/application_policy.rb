@@ -54,14 +54,23 @@ class ApplicationPolicy
 
   private
 
+    def current_apparat_role
+      permit = user.apparats_permits.where(apparat_id: record.id).first
+      permit.present? ? permit.role : "no_role"
+    end
+
+    def current_company_role
+      permit = user.companies_permits.where(company: record).first
+      permit.present? ? permit_role : "no_role"
+    end
+
     def current_user_role
       if record.instance_of? Company
-        user.admin? or user.companies_permits.find_by(company_id: record).role
+        user.admin? or current_company_role
       elsif record.instance_of? Apparat
-        user.admin? or user.apparats_permits.find_by(apparat_id: record).role
+        user.admin? or current_apparat_role
       else
         false
       end
     end
-
 end

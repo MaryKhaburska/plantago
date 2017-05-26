@@ -28,6 +28,7 @@ class ApparatsController < ApplicationController
 
   def create
     @apparat = Apparat.new(apparat_params)
+    @company = Company.find(params[:company_id]) if params[:company_id].present?
     authorize @apparat
     if @apparat.save
       create_permit @apparat
@@ -60,7 +61,6 @@ class ApparatsController < ApplicationController
     desc = "#{@apparat.description}\n\r#{date} (#{current_user.name}): #{params[:description]}"
     @apparat.update(description: desc)
     flash[:success] = "Добавлено нову інформацію в опис."
-    redirect_to @apparat 
   end
 
   def add_contact
@@ -68,14 +68,14 @@ class ApparatsController < ApplicationController
     @contact = Contact.find(params[:contact_id])
     @apparat.contacts << @contact
     flash[:success] = "Новий контакт добавлено."
-    redirect_to @apparat
+    redirect_to right_redirect @apparat
   end
   
   def remove_contact
     authorize @apparat
     contact = Contact.find(params[:contact_id])
     @apparat.contacts.delete(contact)
-    redirect_to @apparat
+    redirect_to right_redirect @apparat
   end
 
   def goto
@@ -102,5 +102,13 @@ class ApparatsController < ApplicationController
 
     def create_permit(apparat)
       apparat.apparats_permits.create(user: current_user, role: "newbie")
+    end
+
+    def right_redirect(apparat)
+      if policy(apparat).update?
+        edit_apparat_path(apparat)
+      else
+        apparat
+      end
     end
 end

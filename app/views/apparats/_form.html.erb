@@ -1,43 +1,59 @@
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3 grey-back">
-    <%= form_for @apparat do |f| %>
-      <%= render "shared/error_messages", object: @apparat %>
-      <div class="form-group text-left">
-        <%= f.label :name, "Назва" %>
-        <%= f.text_field :name, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="from-group text-left">
-        <%= f.label :company, "Компанія власник" %>
-        <%= f.collection_select :company_id, Company.all, :id, :name, {include_blank: true}, class: "form-control" %>
-      </div>
-      <div class="form-group text-left">
-        <%= f.label :serial_number, "Серійний номер" %>
-        <%= f.text_field :serial_number, class: "form-control" %>
-      </div>
-      <div class="form-group text-left">
-        <%= f.label :type, "Тип" %>
-        <%= f.select(:product_type, Apparat.product_types.keys.map {|type| [type.titleize,type]}, {include_blank: true}, { class: "form-control"}) %>
-      </div>
-      <div class="form-group text-left">
-        <%= f.label :ip_address, "ІР адреса" %>
-        <%= f.text_field :ip_address, class: "form-control" %>
-      </div>
-      <% if yield(:button_text) == "Редагувати" %>
-        <div class="form-group text-left">
-          <%= f.label :contacts, "Контакти" %>
-          <ul>
-            <% @apparat.contacts.each do |contact| %>
-              <li><%= contact.name %></li>
+<div class="apparat-main-page">
+  <div class="apparat-information">
+    <div class="container">
+      <h1 class="text-left">Пристрій № <%= @apparat.id %></h1>
+      <div class="row">
+        <%= form_for @apparat do |f| %>
+          <%= render "shared/error_messages", object: @apparat %>
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :name, "Назва" %></h2>
+            <%= f.text_field :name, class: "whitebox" %>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :type, "Тип" %></h2>
+            <%= f.select(:product_type, 
+                         Apparat.product_types.keys.map {|type| [type.titleize,type]}, 
+                         {include_blank: true}, { class: "whitebox"}) %>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :company, "Компанія" %></h2>
+            <%= f.collection_select :company_id, Company.all, :id, :name, 
+                                    {include_blank: true}, class: "whitebox" %>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <% if current_user.admin? %>
+            <h2>Закріплені інженери:</h2>
+              <span class="whitebox">
+                <%= render "users" %>
+              </span>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="form-group text-left">
-        <%= f.label :description, "Опис" %>
-        <%= f.text_area :description, class: "form-control", rows:"10" %>
+          </div>
+        </div> <!-- class="row" -->
+
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :serial_number, "Серійний номер" %></h2>
+            <%= f.text_field :serial_number, class: "whitebox" %>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <h2><%= f.label :ip_address, "ІР адреса" %></h2>
+            <%= f.text_field :ip_address, class: "whitebox" %>
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <h2>Контакти:</h2>
+            <span class="whitebox">
+              <%= render "contacts" %>
+            </span>
+          </div>
+        </div> <!-- class="row" -->
+          <div class="form-group text-left">
+            <%= f.label :description, "Опис" %>
+            <%= f.text_area :description, class: "form-control", rows:"10" %>
+          </div>
+            <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+        <% end %>
       </div>
-        <%= f.submit yield(:button_text), class: "btn btn-success" %>
-    <% end %>
+    </div>
   </div>
 </div>
 
