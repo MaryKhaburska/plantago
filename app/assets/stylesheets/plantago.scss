@@ -7,6 +7,10 @@
 
 /* Notidications */
 
+.alert {
+  margin: 20px 0;
+}
+
 .alert-alert {
   background-color: #f2dede;
   border-color: #eed3d7;
@@ -45,7 +49,8 @@ h2 {
 .new-record {
   width: 100%;
   background-color: #f2f2f2;
-  margin-bottom: 10px;
+  margin: 20px auto;
+  max-width: 30%;
 }
 
 .grey-back {
