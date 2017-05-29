@@ -32,7 +32,7 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.save
       create_permit @apparat
-      redirect_to @apparat
+      redirect_to right_redirect
       flash[:success] = "Item was successfully created."
     else
       render :new
@@ -42,7 +42,7 @@ class ApparatsController < ApplicationController
   def update
     authorize @apparat
     if @apparat.update(apparat_params)
-      redirect_to @apparat
+      redirect_to right_redirect
       flash[:success] = "Item was successfully updated."
     else
       render :edit
@@ -82,7 +82,7 @@ class ApparatsController < ApplicationController
     if Apparat.where(id: params[:id]).exists?
       set_apparat
       authorize @apparat
-      redirect_to @apparat
+      redirect_to right_redirect
     else
       authorize Apparat
       flash[:danger] = "В базі нема пристрою з номером #{params[:id]}."
@@ -100,15 +100,27 @@ class ApparatsController < ApplicationController
       params.require(:apparat).permit(policy(Apparat).permitted_attributes)
     end
 
+    # Creates permit for new apparat. If current_user has permits on assigned
+    # company he will get the same role in this apparat. If user admin - 
+    # don't create any permits.
     def create_permit(apparat)
-      apparat.apparats_permits.create(user: current_user, role: "newbie")
+      unless current_user.admin?
+      company = Company.find(apparat_params[:company_id]) if apparat_params[:company_id].present?
+        if company and current_user.companies_permits.find_by(company: company)
+          role = current_user.companies_permits.find_by(company: company).role
+        else
+          role = "newbie"
+        end
+        apparat.apparats_permits.create(user: current_user, role: role)
+      end
     end
 
-    def right_redirect(apparat)
-      if policy(apparat).update?
-        edit_apparat_path(apparat)
+    # Determine redirect path depend on user policy.
+    def right_redirect
+      if policy(@apparat).update?
+        edit_apparat_path(@apparat)
       else
-        apparat
+        @apparat
       end
     end
 end
