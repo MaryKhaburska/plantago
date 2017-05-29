@@ -1,10 +1,16 @@
-<tr>
-  <td><%= link_to user.name, user %></td>
-  <td><%= user.email %></td>
-  <td><%= user.current_sign_in_ip %></td>
-  <td>
-    <% if user.admin %>
-      <strong>Адміністратор</strong>
+<div class="list-item">
+  <% if current_user.admin? %>
+    <%= link_to user_path(user) do %>
+      <div class="row list-item-header">
+        <span class="col-md-3 col-sm-3"><%= user.name %></span>
+        <span class="col-md-3 col-sm-3"><%= user.email %></span>
+        <span class="col-md-3 col-sm-3"><%= user.current_sign_in_ip %></span>
+        <span class="col-md-3 col-sm-3">
+          <% if user.admin? %>
+            <strong>Administrator</strong>
+          <% end %>
+        </span>
+      </div>
     <% end %>
-  </td>
-</tr>
+  <% end %>
+</div>

@@ -1,18 +1,7 @@
-<% if current_user.admin? %>
-  <p class="text-left"><%= link_to "Новий Інженер", new_user_path, class: "btn btn-info btn-sm" %></p>
-<% end %>
-<div class="table-responsive">
-  <table class="table table-stripped table-hover table-condensed">
-    <thead>
-      <tr>
-        <th>Ім'я</th>
-        <th>Пошта</th>
-        <th>Останній IP</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render @users %>
-    </tbody>
-  </table>
+<div class="container text-center">
+  <% if current_user.admin? %>
+    <%= link_to "Новий Інженер", new_user_path, class: "btn btn-default new-record" %>
+  <% end %>
+
+  <%= render @users %>
 </div>
