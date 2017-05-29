@@ -35,7 +35,8 @@ class CompaniesController < ApplicationController
   def update
     authorize @company
     if @company.update(company_params)
-      redirect_to @company
+      redirect_to companies_path
+
       flash[:success] = "Company was successfully updated."
     else
       render :edit
