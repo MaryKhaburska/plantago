@@ -1,10 +1,12 @@
-<div class="form-inline grey-back text-center">
-  <%= form_tag goto_path, method: :patch do %>
-    <div class="form-group">
-      <%= label_tag :id, "Перейти до пристрою: " %>
-      <%= text_field_tag :id, nil, placeholder: "введи ID", class: "form-control" %>
-    </div>
-    <%= submit_tag "Вперед!", class: "btn btn-success" %>
-  <% end %>
+<div class="container">
+  <div class="form-inline grey-back text-center">
+    <%= form_tag goto_path, method: :patch do %>
+      <div class="form-group">
+        <%= label_tag :id, "Перейти до пристрою: " %>
+        <%= text_field_tag :id, nil, placeholder: "введи ID", class: "form-control" %>
+      </div>
+      <%= submit_tag "Вперед!", class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <%= render "shared/filter" %>
 </div>
-<%= render "shared/filter" %>
