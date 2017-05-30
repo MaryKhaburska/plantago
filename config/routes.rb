@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     member do
       patch :update_description
       patch :add_contact
-      get :remove_contact
+      patch :remove_contact
     end
   end
   patch "/goto", to: "apparats#goto"

@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require apparats
 //= require turbolinks
+//= require bootstrap
 //= require bootstrap-sprockets
+//= require apparats
 //= require_tree .

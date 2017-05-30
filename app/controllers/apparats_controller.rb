@@ -66,6 +66,7 @@ class ApparatsController < ApplicationController
     desc = "#{@apparat.description}\n\r#{date} (#{current_user.name}): #{params[:description]}"
     @apparat.update(description: desc)
     flash[:success] = "Добавлено нову інформацію в опис."
+    redirect_to right_redirect
   end
 
   def add_contact
@@ -80,7 +81,10 @@ class ApparatsController < ApplicationController
     authorize @apparat
     contact = Contact.find(params[:contact_id])
     @apparat.contacts.delete(contact)
-    redirect_to right_redirect @apparat
+    respond_to do |format|
+      format.html { redirect_to right_redirect @apparat }
+      format.js  # { render nothing: true }
+    end
   end
 
   def goto
