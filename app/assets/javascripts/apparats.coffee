@@ -5,3 +5,5 @@ $(document).on "turbolinks:load", ->
 
   $(".remove-contact-from-list").click (e) ->
     e.preventDefault()
+    itemId = $(this).data("id")
+    $("#contacts-list-item-"+itemId).fadeOut()

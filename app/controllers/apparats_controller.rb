@@ -83,7 +83,7 @@ class ApparatsController < ApplicationController
     @apparat.contacts.delete(contact)
     respond_to do |format|
       format.html { redirect_to right_redirect @apparat }
-      format.js  # { render nothing: true }
+      format.js   { render nothing: true }
     end
   end
 
@@ -109,7 +109,7 @@ class ApparatsController < ApplicationController
       params.require(:apparat).permit(policy(Apparat).permitted_attributes)
     end
 
-    # Creates permit for new apparat. If current_user has permits on assigned
+    # Create permit for new apparat. If current_user has permits on assigned
     # company he will get the same role in this apparat. If user admin - 
     # don't create any permits.
     def create_permit(apparat)
