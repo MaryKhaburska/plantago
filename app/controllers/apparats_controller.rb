@@ -83,7 +83,7 @@ class ApparatsController < ApplicationController
     @apparat.contacts.delete(contact)
     respond_to do |format|
       format.html { redirect_to right_redirect @apparat }
-      format.js   { render nothing: true }
+      format.js #  { render nothing: true }
     end
   end
 

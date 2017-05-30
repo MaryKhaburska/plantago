@@ -1,0 +1,4 @@
+$('.remove-contact-from-list').bind('ajax:success', function() {
+    itemId = $(this).data("id");
+    $("#contacts-list-item-"+itemId).fadeOut();
+});
