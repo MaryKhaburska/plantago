@@ -1,0 +1,7 @@
+<div class="contact-selection-partial">
+  <%= select_tag :contact_id,
+      options_for_select(@apparat.not_added_contacts.map{|c| [c.name, c.id]}),
+      class: "contact-selection"
+  %>
+  <%= link_to "+", "#", class: "append-contact-btn btn btn-xs btn-success" %>
+</div>

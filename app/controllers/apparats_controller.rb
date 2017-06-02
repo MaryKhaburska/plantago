@@ -38,7 +38,7 @@ class ApparatsController < ApplicationController
     if @apparat.save
       create_permit @apparat
       redirect_to right_redirect
-      flash[:success] = "Item was successfully created."
+      flash[:success] = "Новий пристрій створено."
     else
       render :new
     end
@@ -48,18 +48,18 @@ class ApparatsController < ApplicationController
     authorize @apparat
     if @apparat.update(apparat_params)
       redirect_to right_redirect
-      flash[:success] = "Item was successfully updated."
+      flash[:success] = "Інформацію про пристрій оновлено."
     else
       render :edit
     end
   end
 
-  def destroy
-    authorize @apparat
-    @apparat.destroy
-    redirect_to apparats_path
-    flash[:success] = "Item was successfully deleted."
-  end
+  # def destroy
+  #   authorize @apparat
+  #   @apparat.destroy
+  #   redirect_to apparats_path
+  #   flash[:success] = "Item was successfully deleted."
+  # end
 
   def update_description
     date = DateTime.now.strftime("%Y-%m-%d %H:%m")
@@ -71,10 +71,13 @@ class ApparatsController < ApplicationController
 
   def add_contact
     authorize @apparat
-    @contact = Contact.find(params[:contact_id])
-    @apparat.contacts << @contact
-    flash[:success] = "Новий контакт добавлено."
-    redirect_to right_redirect @apparat
+    contact = Contact.find(params[:contact_id])
+    @apparat.contacts << contact
+    respond_to do |format|
+      format.html { redirect_to right_redirect @apparat }
+      format.js
+      format.json { render json: @apparat.errors, status: :unprocessable_entity }
+    end
   end
   
   def remove_contact
@@ -83,7 +86,8 @@ class ApparatsController < ApplicationController
     @apparat.contacts.delete(contact)
     respond_to do |format|
       format.html { redirect_to right_redirect @apparat }
-      format.js #  { render nothing: true }
+      format.js
+      format.json { render json: @apparat.errors, status: :unprocessable_entity }
     end
   end
 
