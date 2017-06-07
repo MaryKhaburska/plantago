@@ -8,7 +8,6 @@ $(document).on("turbolinks:load", function() {
   // Append contact action. Add contact for current apparat.
   // Apeend this contact to cantacts-list.
   // Remove from selection input.
-  // $(".append-contact-btn").on("click", function(e){
   $(document).on("click", ".append-contact-btn", function(e){
     e.preventDefault();
     var contactId = $(".append-contact-selection").val()
@@ -21,7 +20,12 @@ $(document).on("turbolinks:load", function() {
         contact_id: contactId
       },
       success: function(){
+        var selectSize = 0;
         $("select#contact_id [value="+ contactId +"]").remove();
+        selectSize = $("select#contact_id option").size();
+        if (selectSize == 0) {
+          $(".append-contact-form").empty();
+        }
       }
     });
   });
