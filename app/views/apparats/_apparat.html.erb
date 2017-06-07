@@ -6,7 +6,7 @@
           <span class="col-md-1 text-center"><%= apparat.id %></span>
           <span class="col-md-3"><%= short_name(apparat.name) %></span>
           <span class="col-md-2"><%= apparat.ip_address if apparat.ip_address %></span>
-          <span class="col-md-1"><%= apparat.company.name if apparat.company %></span>
+          <span class="col-md-6"><%= apparat.company.name if apparat.company %></span>
         </div>
         <p><%= apparat.description %></p>
       </div>
@@ -18,7 +18,7 @@
           <span class="col-md-1 text-center"><%= apparat.id %></span>
           <span class="col-md-3"><%= apparat.name %></span>
           <span class="col-md-2"><%= apparat.ip_address if apparat.ip_address %></span>
-          <span class="col-md-1"><%= apparat.company.name if apparat.company %></span>
+          <span class="col-md-6"><%= apparat.company.name if apparat.company %></span>
         </div>
         <p><%= apparat.description %></p>
       </div>
