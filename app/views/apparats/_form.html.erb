@@ -22,7 +22,7 @@
                                     {include_blank: true}, class: "whitebox" %>
           </div>
           <div class="col-md-6 col-sm-6">
-            <% if current_user.admin? %>
+            <% if current_user.admin? && !@apparat.new_record? %>
               <%= render "users" %>
             <% end %>
           </div>
@@ -38,7 +38,9 @@
             <%= f.text_field :ip_address, class: "whitebox" %>
           </div>
           <div class="col-md-8 col-sm-8">
-            <%= render "contacts_list" %>
+            <% if !@apparat.new_record? %>
+              <%= render "contacts_list" %>
+            <% end %>
           </div>
         </div>
         <div>
