@@ -1,6 +1,10 @@
 <div id="contacts-list-item-<%= contact.id %>">
   <div class="col-md-5 col-sm-5">
-    <%= link_to contact.name, company_contact_path(contact.company, contact) %>
+    <% if policy(contact).edit? %>
+      <%= link_to contact.name, edit_company_contact_path(contact.company, contact) %>
+    <% else %>
+      <%= link_to contact.name, company_contact_path(contact.company, contact) %>
+    <% end %>
   </div>
   <div class="col-md-5 col-sm-5">
     <%= contact.phone %>

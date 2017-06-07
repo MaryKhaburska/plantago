@@ -13,7 +13,7 @@ $(document).on("turbolinks:load", function() {
     var contactId = $(".append-contact-selection").val()
     var apparatId = $(".apparat-id").data("apparat-id");
     $.ajax({
-      url: "add_contact",
+      url: "/apparats/"+apparatId+"/add_contact",
       type: "patch",
       dataType: "script",
       data: {
