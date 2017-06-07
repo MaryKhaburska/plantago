@@ -1,5 +1,5 @@
 $(".remove-contact-from-list").bind("ajax:success", function() {
     itemId = $(this).data("id");
-    $("#contacts-list-item-"+itemId).fadeOut();
-    $(".contact-selection-partial").html("<%= j(render "contact_selection") %>");
+    $("#contacts-list-item-"+itemId).remove();
+    $(".append-contact-form").html("<%= j(render "contact_selection") %>");
 });

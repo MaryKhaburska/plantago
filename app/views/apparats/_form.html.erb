@@ -3,7 +3,7 @@
     <div class="information">
       <div class="container">
         <%= render "shared/error_messages", object: @apparat %>
-        <h1 class="text-left">Пристрій № <%= @apparat.id %></h1>
+        <h1 class="text-left apparat-id" data-apparat-id="<%= @apparat.id %>">Пристрій № <%= @apparat.id %></h1>
         
         <div class="row">
           <div class="col-md-2 col-sm-2">

@@ -71,10 +71,10 @@ class ApparatsController < ApplicationController
 
   def add_contact
     authorize @apparat
-    contact = Contact.find(params[:contact_id])
-    @apparat.contacts << contact
+    @contact = Contact.find(params[:contact_id])
+    @apparat.contacts << @contact
     respond_to do |format|
-      format.html { redirect_to right_redirect @apparat }
+      format.html { redirect_to right_redirect }
       format.js
       format.json { render json: @apparat.errors, status: :unprocessable_entity }
     end
