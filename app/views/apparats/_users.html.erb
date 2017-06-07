@@ -1,12 +1,10 @@
-<div class="users-list-relative">
-  <h2>Закріплені інженери</h2>
-  <%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
-  <div class="whitebox users-list">
-    <ul>
-      <% @apparat.users.map do |user| %>
-        <li><%= link_to user.name, user %>
-        <%= user.apparats_permits.find_by(apparat: @apparat).role %></li>
-      <% end %>
-    </ul>
-  </div>
+<h2>Закріплені інженери</h2>
+<%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
+<div class="users-list">
+  <ul>
+    <% @apparat.users.map do |user| %>
+      <li><%= link_to user.name, user %>
+      <%= user.apparats_permits.find_by(apparat: @apparat).role %></li>
+    <% end %>
+  </ul>
 </div>
