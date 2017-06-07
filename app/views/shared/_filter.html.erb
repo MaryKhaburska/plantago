@@ -9,6 +9,7 @@
     <%= label_tag :desc_fragment, "Опис:" %>
     <%= text_field_tag :desc_fragment, nil, placeholder: "фрагмент опису", class: "form-control" %>
     <%= submit_tag "Шукати", class: "btn btn-success" %>
+    <span class="results-size"></span>
   <% end %>
 </div>
 <div id="results"></div>

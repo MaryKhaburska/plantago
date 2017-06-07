@@ -1,2 +1,3 @@
 $('#results').empty();
 $('#results').append('<%= j(render @apparats) %>').hide().slideDown("fast");
+$(".results-size").html("<%= @apparats_size %>")

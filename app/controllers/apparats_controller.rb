@@ -11,6 +11,7 @@ class ApparatsController < ApplicationController
     @apparats = @apparats.company(params[:company_id]) if params[:company_id].present?
     @apparats = @apparats.product_type(params[:product_type]) if params[:product_type].present?
     @apparats = @apparats.desc_fragment(params[:desc_fragment]) if params[:desc_fragment].present?
+    @apparats_size = @apparats.size
 
     respond_to do |format|
       format.html { @apparats }
