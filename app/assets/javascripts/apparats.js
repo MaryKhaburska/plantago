@@ -1,8 +1,16 @@
 $(document).on("turbolinks:load", function() {
+  // hide-show contacts list
   $("#contacts-list").hide();
   $("#show-contacts-list").on("click", function(e){
     e.preventDefault();
     $("#contacts-list").slideToggle();
+  });
+
+  // hide-show users-list
+  $(".users-list").hide();
+  $(".show-users-list").on("click", function(e){
+    e.preventDefault();
+    $(".users-list").slideToggle("fast");
   });
 
   // Append contact action. Add contact for current apparat.
