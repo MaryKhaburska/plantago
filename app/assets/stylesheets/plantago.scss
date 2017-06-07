@@ -119,3 +119,13 @@ h2 {
     }
   }
 }
+
+.crop-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &:hover {
+    text-overflow: inherit;
+    overflow: visible;
+  }
+}

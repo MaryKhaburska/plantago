@@ -2,7 +2,7 @@
 <div class="row">
   <% @company.contacts.each do |contact| %>
     <div>
-      <div class="col-md-5 col-sm-5">
+      <div class="col-md-5 col-sm-5 crop-text">
         <% if policy(contact).update? %>
           <%= link_to contact.name, edit_company_contact_url(@company, contact) %>
         <% else %>
