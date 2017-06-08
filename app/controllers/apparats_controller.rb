@@ -25,10 +25,12 @@ class ApparatsController < ApplicationController
   end
 
   def edit
+    @users = User.all
     authorize @apparat
   end
 
   def show
+    @users = User.all
     authorize @apparat
   end
 

@@ -6,11 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
- </head>
+  </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <%= render "layouts/navigation" %>
-      <%= render "layouts/notifications" %>
-      <%= yield %>
+    <%= render "layouts/notifications" %>
+    <%= yield %>
   </body>
 </html>
