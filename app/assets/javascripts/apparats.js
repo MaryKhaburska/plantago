@@ -22,7 +22,7 @@ $(document).on("turbolinks:load", function() {
     var apparatId = $(".apparat-id").data("apparat-id");
     $.ajax({
       url: "/apparats/"+apparatId+"/add_contact",
-      type: "patch",
+      type: "post",
       dataType: "script",
       data: {
         contact_id: contactId
@@ -37,4 +37,8 @@ $(document).on("turbolinks:load", function() {
       }
     });
   });
+
+  // Append user action. Add user for current apparat.
+  // Append this contact to users list.
+
 });

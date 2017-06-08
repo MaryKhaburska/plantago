@@ -1,10 +1,34 @@
 <h2>Закріплені інженери</h2>
 <%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
-<div class="users-list">
-  <ul>
-    <% @apparat.users.map do |user| %>
-      <li><%= link_to user.name, user %>
-      <%= user.apparats_permits.find_by(apparat: @apparat).role %></li>
-    <% end %>
-  </ul>
+<div class="users-list row">
+  <% if @apparat.users.empty? %>
+    <p>На пристрої не закріплено жодного інженера.</p>
+  <% end %>
+  <% @apparat.users.map do |user| %>
+    <div class="col-md-6 col-sm-6">
+      <%= link_to user.name, user %>
+    </div>
+    <div class="col-md-5 col-sm-5">
+      <%= user.apparats_permits.find_by(apparat: @apparat).role %>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <%= link_to "x", "#", class: "append-user-btn btn btn-danger btn-xs" %>
+    </div>
+  <% end %>
+
+  <div class="append-user-form">
+    <div class="col-md-6 col-sm-6">
+      <%= select_tag :user_id,
+        options_from_collection_for_select(@users, :id, :name)
+      %>
+    </div>
+    <div class="col-md-5 col-sm-5">
+      <%= select_tag(:role, options_for_select(ApparatsPermit.roles.keys.map {|role| [role.titleize, role]})) %>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <%= link_to "+", "#", class: "append-user-btn btn btn-success btn-xs" %>
+    </div>
+  </div>
+
+
 </div>
