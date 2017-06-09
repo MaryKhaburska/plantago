@@ -1,13 +1,13 @@
 <div class="form-inline grey-back text-center">
   <%= form_tag apparats_path, method: :get, remote: true do %>
-    <%= label_tag :company_id, "Компанія: " %>
-    <% companies = options_for_select(policy_scope(Company).map {|company| [company.name.titleize, company.id]}) %>
-    <%= select_tag :company_id, companies, :include_blank => 'Bci', class: "form-control" %>
+    <%= label_tag :desc_fragment, "Опис:" %>
+    <%= text_field_tag :desc_fragment, nil, placeholder: "фрагмент опису", class: "form-control" %>
     <%= label_tag :product_type, "Тип: " %>
     <% types = options_for_select(Apparat.product_types.keys.map {|key| [key.humanize, key]}) %>
     <%= select_tag :product_type, types, include_blank: 'Bci', class: "form-control" %>
-    <%= label_tag :desc_fragment, "Опис:" %>
-    <%= text_field_tag :desc_fragment, nil, placeholder: "фрагмент опису", class: "form-control" %>
+    <%= label_tag :company_id, "Компанія: " %>
+    <% companies = options_for_select(policy_scope(Company).map {|company| [company.name.titleize, company.id]}) %>
+    <%= select_tag :company_id, companies, :include_blank => 'Bci', class: "form-control" %>
     <%= submit_tag "Шукати", class: "btn btn-success" %>
     <span class="results-size"></span>
   <% end %>
