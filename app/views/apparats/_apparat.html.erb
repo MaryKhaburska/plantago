@@ -4,9 +4,9 @@
       <div>
         <div class="row list-item-header">
           <span class="col-md-1 text-center"><%= apparat.id %></span>
-          <span class="col-md-3"><%= short_name(apparat.name) %></span>
-          <span class="col-md-2"><%= apparat.ip_address if apparat.ip_address %></span>
-          <span class="col-md-6"><%= apparat.company.name if apparat.company %></span>
+          <span class="col-md-3 crop-text"><%= apparat.name %></span>
+          <span class="col-md-2 ip-address"><%= apparat.ip_address if apparat.ip_address %></span>
+          <span class="col-md-6 crop-text"><%= apparat.company.name if apparat.company %></span>
         </div>
     <%= link_to (edit_apparat_path(apparat)) do %>
         <p><%= apparat.description %></p>
@@ -17,9 +17,9 @@
       <div>
         <div class="row list-item-header">
           <span class="col-md-1 text-center"><%= apparat.id %></span>
-          <span class="col-md-3"><%= apparat.name %></span>
+          <span class="col-md-3 crop-text"><%= apparat.name %></span>
           <span class="col-md-2 ip-address"><%= apparat.ip_address if apparat.ip_address %></span>
-          <span class="col-md-6"><%= apparat.company.name if apparat.company %></span>
+          <span class="col-md-6 crop-text"><%= apparat.company.name if apparat.company %></span>
         </div>
     <%= link_to (apparat_path(apparat)) do %>
         <p><%= apparat.description %></p>
