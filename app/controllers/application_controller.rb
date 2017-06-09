@@ -3,9 +3,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized  
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveModel::RangeError, with: :entered_too_big_number
 
   private
+
+    def entered_too_big_number
+      flash[:danger] = "Введено надто велике число."
+      redirect_to(request.referrer || root_path)
+    end
 
     def user_not_authorized
       flash[:danger] = "Недостатньо прав доступу."

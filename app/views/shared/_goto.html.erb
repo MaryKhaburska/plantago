@@ -1,0 +1,6 @@
+<div class="navbar-form navbar-left">
+  <%= form_tag goto_path, method: :patch do %>
+    <%= text_field_tag :id, nil, placeholder: "Введи ID", size: 5, maxlength: 18,  class: "form-control input-sm" %>
+    <%= submit_tag "Go!", class: "btn btn-success btn-sm" %>
+  <% end %>
+</div>
