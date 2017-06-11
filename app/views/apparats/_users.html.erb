@@ -4,31 +4,24 @@
   <% if @apparat.users.empty? %>
     <p>На пристрої не закріплено жодного інженера.</p>
   <% end %>
-  <% @apparat.users.map do |user| %>
-    <div class="col-md-6 col-sm-6">
-      <%= link_to user.name, user %>
-    </div>
-    <div class="col-md-5 col-sm-5">
-      <%= user.apparats_permits.find_by(apparat: @apparat).role %>
-    </div>
-    <div class="col-md-1 col-sm-1">
-      <%= link_to "x", "#", class: "append-user-btn btn btn-danger btn-xs" %>
-    </div>
-  <% end %>
+
+  <%= render @permits %>
 
   <div class="append-user-form">
-    <div class="col-md-6 col-sm-6">
-      <%= select_tag :user_id,
-        options_from_collection_for_select(@users, :id, :name)
-      %>
-    </div>
-    <div class="col-md-5 col-sm-5">
-      <%= select_tag(:role, options_for_select(ApparatsPermit.roles.keys.map {|role| [role.titleize, role]})) %>
-    </div>
-    <div class="col-md-1 col-sm-1">
-      <%= link_to "+", "#", class: "append-user-btn btn btn-success btn-xs" %>
-    </div>
+    <%= form_tag ('/'), id: "append-user-form" %>
+      <%= hidden_field_tag :apparat_id, @apparat %>
+      <div class="col-md-6 col-sm-6">
+        <%= select_tag :user, options_for_select(User.all.map {|user| [user.name, user.id]}) %>
+      </div>
+      <div class="col-md-1 col-sm-1">
+        <%= check_box_tag :locked %>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys) %>
+      </div>
+      <div class="col-md-1 col-sm-1">
+        <%= submit_tag "+", class: "new-apparat-permit-btn btn btn-xs btn-success" %>
+      </div>
   </div>
-
 
 </div>

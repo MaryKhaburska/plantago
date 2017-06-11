@@ -1,6 +1,6 @@
-<%= form_for [apparats_permit.user, apparats_permit] do |f| %>
+<%= form_for [apparats_permit.user, apparats_permit], remote: true do |f| %>
   <div class="col-md-6 col-sm-6">
-    <%= apparats_permit.user.name %>
+    <%= link_to  apparats_permit.user.name, apparats_permit.user %>
   </div>
   <div class="col-md-1 col-sm-1">
     <%= f.check_box :locked %>
@@ -9,6 +9,6 @@
     <%= f.select :role, ApparatsPermit.roles.keys %>
   </div>
   <div class="col-md-1 col-sm-6">
-    <%= f.submit "V", class: "btn btn-xs" %>
+    <%= link_to"x", "#", class: "remove-user-permit btn btn-danger btn-xs" %>
   </div>
 <% end %>
