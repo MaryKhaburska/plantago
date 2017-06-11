@@ -22,7 +22,7 @@ $(document).on("turbolinks:load", function() {
     var apparatId = $(".apparat-id").data("apparat-id");
     $.ajax({
       url: "/apparats/"+apparatId+"/add_contact",
-      type: "post",
+      type: "patch",
       dataType: "script",
       data: {
         contact_id: contactId

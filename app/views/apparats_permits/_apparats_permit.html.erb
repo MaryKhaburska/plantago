@@ -1,0 +1,14 @@
+<%= form_for [apparats_permit.user, apparats_permit] do |f| %>
+  <div class="col-md-6 col-sm-6">
+    <%= apparats_permit.user.name %>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <%= f.check_box :locked %>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <%= f.select :role, ApparatsPermit.roles.keys %>
+  </div>
+  <div class="col-md-1 col-sm-6">
+    <%= f.submit "V", class: "btn btn-xs" %>
+  </div>
+<% end %>

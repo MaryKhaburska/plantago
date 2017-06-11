@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :apparats do
     member do
       patch :update_description
-      post :add_contact
+      patch :add_contact
       patch :remove_contact
     end
   end
