@@ -8,20 +8,18 @@
   <%= render @permits %>
 
   <div class="append-user-form">
-    <%= form_tag ('/'), id: "append-user-form" %>
-      <%= hidden_field_tag :apparat_id, @apparat %>
-      <div class="col-md-6 col-sm-6">
-        <%= select_tag :user, options_for_select(User.all.map {|user| [user.name, user.id]}) %>
-      </div>
-      <div class="col-md-1 col-sm-1">
-        <%= check_box_tag :locked %>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys) %>
-      </div>
-      <div class="col-md-1 col-sm-1">
-        <%= submit_tag "+", class: "new-apparat-permit-btn btn btn-xs btn-success" %>
-      </div>
+    <div class="col-md-6 col-sm-6">
+      <%= select_tag :user, options_for_select(User.all.map {|user| [user.name, user.id]}) %>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <%= check_box_tag :locked, {}, class: "user-role-locked" %>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys) %>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <%= link_to "+", "#", class: "new-apparat-permit-btn btn btn-xs btn-success" %>
+    </div>
   </div>
 
 </div>

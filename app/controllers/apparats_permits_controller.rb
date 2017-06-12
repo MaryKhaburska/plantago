@@ -7,10 +7,15 @@ class ApparatsPermitsController < ApplicationController
     @apparats_permit = @user.apparats_permits.build(apparats_permit_params)
     authorize @apparats_permit
     if @apparats_permit.save
-      flash[:success] = "User's role was successfully created."
-      redirect_to @user
+      respond_to do |format|
+        format.html {redirect_to @user, success: "Новий дозвіл створено успішно"}
+        format.js
+      end
     else
-      render :new 
+      respond_to do |format|
+        format.html {render :new}
+        format.js
+      end
     end
   end
 
