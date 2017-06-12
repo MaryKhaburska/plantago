@@ -3,7 +3,7 @@ $(document).on("turbolinks:load", function() {
   $("#contacts-list").hide();
   $("#show-contacts-list").on("click", function(e){
     e.preventDefault();
-    $("#contacts-list").slideToggle();
+    $("#contacts-list").slideToggle("fast");
   });
 
   // hide-show users-list
@@ -22,7 +22,7 @@ $(document).on("turbolinks:load", function() {
     var apparatId = $(".apparat-id").data("apparat-id");
     $.ajax({
       url: "/apparats/"+apparatId+"/add_contact",
-      type: "post",
+      type: "patch",
       dataType: "script",
       data: {
         contact_id: contactId
@@ -37,8 +37,4 @@ $(document).on("turbolinks:load", function() {
       }
     });
   });
-
-  // Append user action. Add user for current apparat.
-  // Append this contact to users list.
-
 });

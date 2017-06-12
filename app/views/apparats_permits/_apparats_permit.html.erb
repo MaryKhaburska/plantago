@@ -1,0 +1,14 @@
+<%= form_for [apparats_permit.user, apparats_permit], remote: true do |f| %>
+  <div class="col-md-6 col-sm-6">
+    <%= link_to  apparats_permit.user.name, apparats_permit.user %>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <%= f.check_box :locked %>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <%= f.select :role, ApparatsPermit.roles.keys %>
+  </div>
+  <div class="col-md-1 col-sm-6">
+    <%= link_to"x", "#", class: "remove-user-permit btn btn-danger btn-xs" %>
+  </div>
+<% end %>
