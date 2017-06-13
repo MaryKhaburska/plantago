@@ -22,7 +22,6 @@
     <%= link_to "Видалити інженера", user_path(@user), data: {confirm: "Впевнений що хочеш видалити інженера?"}, method: :delete, class: "btn btn-danger btn-xs" %>
   <% end %>
 
-  <% if !@user.admin? %>
     <div class="row">
       <div class="col-xs-6">
         <%= render "users/apparats_table" %>
@@ -31,5 +30,4 @@
         <%= render "users/companies_table" %>
       </div>
     </div>
-  <% end %>
 </div>
