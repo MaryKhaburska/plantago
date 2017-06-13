@@ -4,11 +4,12 @@ class ApparatsPermitsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
+    @apparat = Apparat.find(apparats_permit_params[:apparat_id])
     @apparats_permit = @user.apparats_permits.build(apparats_permit_params)
     authorize @apparats_permit
     if @apparats_permit.save
       respond_to do |format|
-        format.html {redirect_to @user, success: "Новий дозвіл створено успішно"}
+        format.html {redirect_to @user, success: "Новий дозвіл створено успішно."}
         format.js
       end
     else

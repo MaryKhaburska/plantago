@@ -1,25 +1,11 @@
 <h2>Закріплені інженери</h2>
 <%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
 <div class="users-list row">
-  <% if @apparat.users.empty? %>
-    <p>На пристрої не закріплено жодного інженера.</p>
-  <% end %>
-
+  <div class="apparat-permits-users-list">
   <%= render @permits %>
-
-  <div class="append-user-form">
-    <div class="col-md-6 col-sm-6">
-      <%= select_tag :user, options_for_select(User.all.map {|user| [user.name, user.id]}) %>
-    </div>
-    <div class="col-md-1 col-sm-1">
-      <%= check_box_tag :locked, {}, class: "user-role-locked" %>
-    </div>
-    <div class="col-md-4 col-sm-4">
-      <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys) %>
-    </div>
-    <div class="col-md-1 col-sm-1">
-      <%= link_to "+", "#", class: "new-apparat-permit-btn btn btn-xs btn-success" %>
-    </div>
   </div>
 
+  <div class="append-user-form">
+    <%= render "append_user_form" %>
+  </div>
 </div>

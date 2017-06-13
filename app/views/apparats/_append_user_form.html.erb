@@ -1,0 +1,14 @@
+<% if policy(ApparatsPermit).create? && !@apparat.users_without_permit.empty? %>
+  <div class="col-md-6 col-sm-6">
+    <%= select_tag :user, options_for_select(@apparat.users_without_permit.map {|user| [user.name, user.id]}) %>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <%= check_box_tag :locked, {}, class: "user-role-locked" %>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys) %>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <%= link_to "+", "#", class: "new-apparat-permit-btn btn btn-xs btn-success" %>
+  </div>
+<% end %>

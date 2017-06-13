@@ -18,4 +18,8 @@ class Apparat < ApplicationRecord
       []
     end
   end
+
+  def users_without_permit
+    User.all - self.users
+  end
 end
