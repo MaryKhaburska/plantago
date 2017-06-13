@@ -19,3 +19,17 @@ $(document).on "turbolinks:load", ->
       #   console.log("Successful AJAX call: #{data}")
     e.preventDefault()
 
+  $(".remove-user-permit").on "click", (e) ->
+    e.preventDefault()
+    user_id = $(this).data("user-id")
+    permit_id = $(this).data("permit-id")
+    $.ajax "/users/#{user_id}/apparats_permits/#{permit_id}",
+      type: "delete"
+      dataType: "script"
+      data: {
+        id: permit_id
+      }
+      error: (jqXHR, textStatus, errorrThrown) ->
+        console.log("AJAX Error: #{textStatus}")
+      success: (data, textStatus, jqXHR) ->
+        console.log("Successful AJAX call: #{data}")

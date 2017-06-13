@@ -36,9 +36,12 @@ class ApparatsPermitsController < ApplicationController
     @user = User.find(params[:user_id])
     @apparats_permit = @user.apparats_permits.find(params[:id])
     authorize @apparats_permit
-    @apparats_permit.destroy
-    flash[:success] = "User's role was successfully deleted"
-    redirect_to @user
+    if @apparats_permit.destroy
+      respond_to do |format|
+        format.html {redirect_to @user, success: "User's role was successfully deleted" }
+        format.js
+      end
+    end
   end
 
   private

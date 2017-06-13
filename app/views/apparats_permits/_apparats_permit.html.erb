@@ -1,4 +1,4 @@
-<div id="apparat-permit-user-<%= apparats_permit.user.id %>">
+<div id="apparat-permit-user-<%= apparats_permit.id %>">
     <div class="col-md-6 col-sm-6">
       <%= link_to  apparats_permit.user.name, apparats_permit.user %>
     </div>
@@ -9,6 +9,6 @@
       <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys, apparats_permit.role) %>
     </div>
     <div class="col-md-1 col-sm-6">
-      <%= link_to "x","#", class: "remove-user-permit btn btn-danger btn-xs" %>
+      <%= link_to "x","#", data: {user_id: apparats_permit.user.id, permit_id: apparats_permit.id }, class: "remove-user-permit btn btn-danger btn-xs" %>
     </div>
 </div>
