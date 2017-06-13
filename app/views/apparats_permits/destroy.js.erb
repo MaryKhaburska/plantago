@@ -1,1 +1,9 @@
 $("#apparat-permit-user-<%= @apparats_permit.id %>").remove();
+$("select#user").prepend($('<option value="<%= @apparats_permit.user.id %>"><%= @apparats_permit.user.name %></option>'));
+$("select#user :first").prop("selected", "selected");
+if ($(".append-user-form select#user option").size() == 0) {
+} else {
+  $(".append-user-form").html("<%= j(render "apparats/append_user_form") %>");
+  $(".append-user-form").show();
+}
+

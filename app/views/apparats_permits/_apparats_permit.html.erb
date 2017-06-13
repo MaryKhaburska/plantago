@@ -9,6 +9,12 @@
       <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys, apparats_permit.role) %>
     </div>
     <div class="col-md-1 col-sm-6">
-      <%= link_to "x","#", data: {user_id: apparats_permit.user.id, permit_id: apparats_permit.id }, class: "remove-user-permit btn btn-danger btn-xs" %>
+      <%= link_to "x", [apparats_permit.user, apparats_permit],
+        method: :delete,
+        remote: true,
+        data: {user_id: apparats_permit.user.id,
+               permit_id: apparats_permit.id,
+               confirm: "Дійсно видалити дозвіл?"},
+        class: "remove-user-permit btn btn-danger btn-xs" %>
     </div>
 </div>

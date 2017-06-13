@@ -1,2 +1,7 @@
 $(".apparat-permits-users-list").append("<%= j(render @apparats_permit) %>");
-$(".append-user-form").html("<%= j (render "apparats/append_user_form") %>");
+$("select#user [value='<%= @apparats_permit.user.id %>']").remove();
+if ($(".append-user-form select#user option").size() == 0) {
+  $(".append-user-form").hide();
+} else {
+}
+

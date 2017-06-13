@@ -34,12 +34,13 @@ class ApparatsPermitsController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    @apparats_permit = @user.apparats_permits.find(params[:id])
+    @apparats_permit = ApparatsPermit.find(params[:id])
+    @apparat = @apparats_permit.apparat
     authorize @apparats_permit
     if @apparats_permit.destroy
       respond_to do |format|
         format.html {redirect_to @user, success: "User's role was successfully deleted" }
-        format.js
+        format.js {render layout: false}
       end
     end
   end
