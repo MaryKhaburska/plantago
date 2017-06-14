@@ -1,5 +1,8 @@
 <h2>Закріплені інженери</h2>
-<%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
+<div class="user-buttons">
+  <%= link_to "Перегляд", "#", class: "show-users-list btn btn-default" %>
+  <span id="notice" class="ajax-alert"></span>
+</div>
 <div class="users-list row">
   <div class="apparat-permits-users-list">
   <%= render @permits %>

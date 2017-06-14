@@ -106,5 +106,5 @@ $(document).on("change", ".apparat-permits-users-list select#role", function(e){
       // console.log(jqXHR);
     }
   });
-
 });
+

@@ -8,3 +8,8 @@ if ($(".append-user-form select#user option").size() == 0) {
   $(".append-user-form").show();
 }
 
+$(".user-buttons span#notice")
+  .html("Дозвіл видалено.")
+  .fadeIn()
+  .delay(1000)
+  .fadeOut();

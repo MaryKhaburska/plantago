@@ -1,1 +1,7 @@
 $(".list-items").append("<%= j(render @contact) %>");
+
+$(".contact-buttons span#notice")
+  .html("Контакт додано.")
+  .fadeIn()
+  .delay(1000)
+  .fadeOut();

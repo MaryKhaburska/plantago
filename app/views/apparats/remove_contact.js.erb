@@ -3,3 +3,9 @@ $(".remove-contact-from-list").bind("ajax:success", function() {
     $("#contacts-list-item-"+itemId).remove();
     $(".append-contact-form").html("<%= j(render "contact_selection") %>");
 });
+
+$(".contact-buttons span#notice")
+  .html("Контакт відкріплено.")
+  .fadeIn()
+  .delay(1000)
+  .fadeOut();
