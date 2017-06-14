@@ -66,3 +66,45 @@ $(document).on("click", ".new-apparat-permit-btn", function(e){
   });
 });
 
+// Update permit parameter "locked"
+$(document).on("click", ".apparat-permits-users-list input#locked", function(e){
+  var userId   = $(this).data("user-id");
+  var permitId = $(this).data("permit-id");
+  var value    = $(this).prop("checked");
+  console.log("user_id: " + userId + " | permit_id: " + permitId + " | value: " + value);
+  $.ajax({
+    url: "/users/" + userId + "/apparats_permits/" + permitId,
+    type: "PUT",
+    dataType: "script",
+    data: {apparats_permit: {
+      locked: value
+    }},
+  });
+});
+
+// Update permit parameter "role"
+$(document).on("change", ".apparat-permits-users-list select#role", function(e){
+  var userId   = $(this).data("user-id");
+  var permitId = $(this).data("permit-id");
+  var value    = $(this).val();
+  console.log("user_id: " + userId + " | permit_id: " + permitId + " | value: " + value);
+  $.ajax({
+    url: "/users/" + userId + "/apparats_permits/" + permitId,
+    type: "PUT",
+    dataType: "script",
+    data: {apparats_permit: {
+      role: value
+    }},
+    error: function(jqXHR, textStatus, errorThrown){
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+    success: function(data, textStatus, jqXHR){
+      // console.log(data);
+      console.log(textStatus);
+      // console.log(jqXHR);
+    }
+  });
+
+});

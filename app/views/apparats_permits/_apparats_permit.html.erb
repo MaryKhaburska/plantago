@@ -3,10 +3,10 @@
       <%= link_to  apparats_permit.user.name, apparats_permit.user %>
     </div>
     <div class="col-md-1 col-sm-1">
-      <%= check_box_tag :locked, {}, apparats_permit.locked %>
+      <%= check_box_tag :locked, {}, apparats_permit.locked, data: { user_id: apparats_permit.user.id, permit_id: apparats_permit.id} %>
     </div>
     <div class="col-md-4 col-sm-4">
-      <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys, apparats_permit.role) %>
+      <%= select_tag :role, options_for_select(ApparatsPermit.roles.keys, apparats_permit.role), data: { user_id: apparats_permit.user.id, permit_id: apparats_permit.id} %>
     </div>
     <div class="col-md-1 col-sm-6">
       <%= link_to "x", [apparats_permit.user, apparats_permit],

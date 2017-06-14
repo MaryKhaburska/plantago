@@ -24,11 +24,15 @@ class ApparatsPermitsController < ApplicationController
     @apparats_permit = ApparatsPermit.find(params[:id])
     authorize @apparats_permit
     if @apparats_permit.update_attributes(apparats_permit_params)
-      flash[:success] = "User's role was successfully updated"
-      redirect_to @apparats_permit.user
+      respond_to do |format|
+        format.html {redirect_to @apparats_permit.user, success: "Дозвіл змінено."}
+        format.js
+      end
     else
-      flash[:danger] = "Role was not changed."
-      redirect_to @user
+      respond_to do |format|
+        format.html {redirect_to @user, danger: "Щось пішло не так."}
+        format.js
+      end
     end
   end
 
