@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
     @contact = @company.contacts.create(contact_params)
     if @contact.save
       flash[:success] = "Новий контакт створено."
-      redirect_to @contact.company
+      right_redirect
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     if @contact.update(contact_params)
       flash[:success] = "Контакт відредаговано."
-      redirect_to @contact.company
+      right_redirect
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     flash[:success] = "Контакт видалено."
-    redirect_to @contact.company
+    right_redirect
   end
 
   private
@@ -48,4 +48,11 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :email, :phone, :skype, :company_id, :default) 
   end
 
+  def right_redirect
+    if current_user.admin?
+      redirect_to edit_company_path(@contact.company)
+    else
+      redirect_to @contact.company
+    end
+  end
 end

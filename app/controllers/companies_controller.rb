@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     authorize @company
     if @company.save
-      redirect_to companies_path
+      redirect_to right_redirect
       flash[:success] = "Company was successfully created."
     else
       render :new
@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
   def update
     authorize @company
     if @company.update(company_params)
-      redirect_to companies_path
+      redirect_to right_redirect
 
       flash[:success] = "Company was successfully updated."
     else
@@ -58,5 +58,14 @@ class CompaniesController < ApplicationController
 
     def company_params
       params.require(:company).permit(policy(Company).permitted_attributes)
+    end
+
+    # Determine redirect path depend on user policy.
+    def right_redirect
+      if policy(@company).update?
+        edit_apparat_path(@company)
+      else
+        @company
+      end
     end
 end
