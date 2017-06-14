@@ -1,4 +1,4 @@
-<% if policy(ApparatsPermit).create? && !@apparat.users_without_permit.empty? %>
+<% if policy(ApparatsPermit).create? %>
   <div class="col-md-6 col-sm-6">
     <%= select_tag :user, options_for_select(@apparat.users_without_permit.map {|user| [user.name, user.id]}) %>
   </div>

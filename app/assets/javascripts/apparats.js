@@ -12,7 +12,15 @@ $(document).on("turbolinks:load", function() {
     e.preventDefault();
     $(".users-list").slideToggle("fast");
   });
+
+  // hide empty select when page is loaded
+  if ($(".append-user-form select#user option").size() == 0) {
+    $(".append-user-form").hide();
+  } else {
+    $(".append-user-form").show();
+  }
 });
+
 
 // Append contact action. Add contact for current apparat.
 // Apeend this contact to cantacts-list.
@@ -39,6 +47,7 @@ $(document).on("click", ".append-contact-btn", function(e){
   });
 });
 
+// Create new user apparat permit
 $(document).on("click", ".new-apparat-permit-btn", function(e){
   e.preventDefault();
   var apparatId = $(".apparat-id").data("apparat-id");

@@ -3,5 +3,6 @@ $("select#user [value='<%= @apparats_permit.user.id %>']").remove();
 if ($(".append-user-form select#user option").size() == 0) {
   $(".append-user-form").hide();
 } else {
+  $(".append-user-form").show();
 }
 
