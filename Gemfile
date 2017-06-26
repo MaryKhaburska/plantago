@@ -17,6 +17,7 @@ gem 'devise'
 gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'mysql2'
+gem 'ffaker'
 
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
@@ -32,7 +33,6 @@ gem 'capistrano-rvm'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
-  gem 'ffaker'
   gem 'database_cleaner'
 end
 
