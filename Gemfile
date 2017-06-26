@@ -7,7 +7,6 @@ end
 
 
 gem 'rails', '~> 5.0.2'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -17,6 +16,12 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'mysql2'
+
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rvm'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -26,6 +31,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'sqlite3'
   gem 'ffaker'
   gem 'database_cleaner'
 end
