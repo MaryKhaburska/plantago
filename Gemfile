@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'mysql2'
 gem 'ffaker'
+gem 'therubyracer'
 
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
